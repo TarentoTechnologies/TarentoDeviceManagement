@@ -1,0 +1,48 @@
+{
+  "deviceId":"shhhdfsa",
+  "name":"test",
+  "make":"tttt",
+  "type":"xxxx",
+  "os":"xxx",
+  "IMEI":"xxx",
+  "accessoryinfo":"xqwww",
+  "comments":"wqweqwewqe"
+}
+
+
+getdeviceinfo thru IMEI
+
+{
+"appId":1,
+"apiToken":"111111",
+"IMEI":"2431442"
+}
+
+
+getassigned device list
+
+{
+ "appId":1,
+"apiToken":"111111",
+"employee_id":"111"
+}
+
+
+device transfer api request
+
+{
+"appId":1,
+"apiToken":"111111",
+ "oldOwnerPin":"111",
+"OldOwnerIdentifier":"111",
+"newOwnerPin":"111",
+"newOwnerIdentifier":"114",
+"IMEI":"2431442"
+
+}
+
+
+
+
+
+

@@ -1,8 +1,10 @@
 <?php
+require 'app/config/apikeys.php';
 require 'vendor/autoload.php';
 use App\lib\AppContainer;
 use App\lib\Utility;
 
+//add-new-device
 Flight::route('/add-device-info', function() use (&$app)
 {
    $adminobj=$app->resolve("admin");
@@ -10,10 +12,41 @@ Flight::route('/add-device-info', function() use (&$app)
 
 });
 
+//list-device-details
 Flight::route('/list-device-details', function() use (&$app)
 {
    $adminobj=$app->resolve("admin");
    $adminobj->listDeviceDetails();
+
+});
+
+//get-device-information
+Flight::route('/get-device-info', function() use (&$app)
+{
+   $adminobj=$app->resolve("admin");
+   $adminobj->getdeviceInformation();
+
+});
+
+
+Flight::route('/get-assigned-device-list', function() use (&$app)
+{
+   $adminobj=$app->resolve("user");
+   $adminobj->getAssignedDevices();
+
+});
+
+Flight::route('/change-user-pin', function() use (&$app)
+{
+   $adminobj=$app->resolve("user");
+   $adminobj->changePin();
+
+});
+
+Flight::route('/device-transfer', function() use (&$app)
+{
+   $adminobj=$app->resolve("app");
+   $adminobj->deviceTransfer();
 
 });
 

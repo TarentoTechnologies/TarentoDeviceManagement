@@ -71,5 +71,40 @@ Class Admin extends DB
      
              }
     }
+
+    /**
+     * getDeviceInfoFromIMEI
+     *
+     * it will get the device informtion with device holder
+     *
+     * @param (type) (name) about this param
+     * @return (type) (name)
+     */
+    public function getDeviceInfoFromIMEI($deviceInformationArray)
+    {
+             try
+             {
+                 error_log(print_r($deviceInformationArray,true));
+                 $sql="select di.*,u.id as user_id,u.unique_id as employee_id from deviceinfo di join device_holder_info dhi on di.id=dhi.device_id join users u on u.id=dhi.user_id where di.IMEI=?";
+                 $response=parent::query($sql,$deviceInformationArray);
+                 $deviceInformation=array();
+                 while($result=$response->fetchObject())
+                 {
+
+                     $deviceInformation=(array)$result;
+                     //array_push($deviceInformation,(array)$result);
+                     error_log(print_r($deviceInformation,true));
+                 }
+
+                 return array("statusCode"=>200,"statusMessage"=>"Successfully added the device","response"=>$deviceInformation);
+            
+
+             }
+             catch(Exception $e)
+             {
+                  return array("statusCode"=>500,"errorMessage"=>"Failure");
+     
+             }
+    }
 } 
 ?>

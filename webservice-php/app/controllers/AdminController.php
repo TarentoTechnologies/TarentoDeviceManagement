@@ -1,7 +1,7 @@
 <?php
  namespace App\Controllers;
  use \Flight;
-  use \GUMP;
+ use \GUMP;
  use App\Models;
 
  class AdminController 
@@ -100,6 +100,37 @@
      {
               $response=$this->admin->getDeviceDetails();;
               Flight::json($response);
+     }
+
+     /**
+      * Get device details
+      *
+      * get device information
+      *
+      * @param (type) (name) about this param
+      * @return (type) (name)
+      */
+
+     public function getdeviceInformation()
+     {
+
+          $deviceInformationArray=array();
+          $deviceDetails=json_decode(Flight::request()->getBody(),true);
+          //$response=$this->admin->getDeviceInfoFromIMEI();
+          $is_valid = GUMP::is_valid($deviceDetails, array(
+              'IMEI' => 'required'
+          ));
+          if($is_valid === true) 
+          {
+           $deviceInformationArray[]=$deviceDetails["IMEI"];
+           $response=$this->admin->getDeviceInfoFromIMEI($deviceInformationArray);
+            Flight::json($response);
+           }
+           else 
+           {
+            echo Flight::json(array("statusCode"=>400,"errorMessage"=>"Bad Request","response"=>$is_valid));
+           }
+          //Flight::json($response);
      }
 
 }
