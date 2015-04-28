@@ -68,4 +68,20 @@ Class User extends DB
             return array("statusCode"=>500,"errorMessage"=>"Failure");
     	}
     }
+
+    public function resetUserPin($userInfo)
+    {
+    	try
+    	{
+              $sql = "update users set pin=? where unique_id=?";
+              $response=parent::query($sql,$userInfo);
+              return array("statusCode"=>200,"statusMessage"=>"Sucess");
+            
+
+    	}
+    	catch(Exception $e)
+    	{
+            return array("statusCode"=>500,"errorMessage"=>"Failure");
+    	}
+    }
 }

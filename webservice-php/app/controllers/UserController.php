@@ -88,7 +88,25 @@ use \Flight;
       */
      public function resetPin()
      {
-
+          $userInformationArray=array();
+          $userDetails=json_decode(Flight::request()->getBody(),true);
+          //$response=$this->admin->getDeviceInfoFromIMEI();
+          $is_valid = GUMP::is_valid($userDetails, array(
+              'employee_id' => 'required',
+              'pin'=>'required',
+             
+          ));
+          if($is_valid === true) 
+          {
+           $userInformationArray[]=$userDetails["pin"];
+           $userInformationArray[]=$userDetails["employee_id"];
+           $response=$this->user->resetUserPin($userInformationArray);
+            Flight::json($response);
+           }
+           else 
+           {
+            echo Flight::json(array("statusCode"=>400,"errorMessage"=>"Bad Request","response"=>$is_valid));
+           }
      }
 
 

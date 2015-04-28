@@ -42,7 +42,14 @@ device transfer api request
 }
 
 
+pin reset api
 
+{
+"appId":1,
+"apiToken":"111111",
+"employee_id":"111",
+"pin":"1111"
+}
 
 
 

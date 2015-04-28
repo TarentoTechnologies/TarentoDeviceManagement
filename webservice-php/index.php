@@ -50,6 +50,15 @@ Flight::route('/device-transfer', function() use (&$app)
 
 });
 
+Flight::route('/reset-user-pin', function() use (&$app)
+{
+   $adminobj=$app->resolve("user");
+   $adminobj->resetPin();
+
+});
+
+
+
 
 
 Flight::before('start', function(&$params, &$output)
