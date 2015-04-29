@@ -1,11 +1,12 @@
 <?php
 require 'app/config/apikeys.php';
+require 'app/config/urlConstants.php';
 require 'vendor/autoload.php';
 use App\lib\AppContainer;
 use App\lib\Utility;
 
 //add-new-device
-Flight::route('/add-device-info', function() use (&$app)
+Flight::route(ADD_DEVICE_INFORMATION, function() use (&$app)
 {
    $adminobj=$app->resolve("admin");
    $adminobj->addDeviceDetails();
@@ -13,7 +14,7 @@ Flight::route('/add-device-info', function() use (&$app)
 });
 
 //list-device-details
-Flight::route('/list-device-details', function() use (&$app)
+Flight::route(LIST_DEVICE_DETAILS, function() use (&$app)
 {
    $adminobj=$app->resolve("admin");
    $adminobj->listDeviceDetails();
@@ -21,7 +22,7 @@ Flight::route('/list-device-details', function() use (&$app)
 });
 
 //get-device-information
-Flight::route('/get-device-info', function() use (&$app)
+Flight::route(GET_DEVICE_INFORMATION, function() use (&$app)
 {
    $adminobj=$app->resolve("admin");
    $adminobj->getdeviceInformation();
@@ -29,33 +30,51 @@ Flight::route('/get-device-info', function() use (&$app)
 });
 
 
-Flight::route('/get-assigned-device-list', function() use (&$app)
+Flight::route(GET_ASSIGNED_DEVICE_LIST, function() use (&$app)
 {
    $adminobj=$app->resolve("user");
    $adminobj->getAssignedDevices();
 
 });
 
-Flight::route('/change-user-pin', function() use (&$app)
+Flight::route(CHANGE_USER_PIN, function() use (&$app)
 {
    $adminobj=$app->resolve("user");
    $adminobj->changePin();
 
 });
 
-Flight::route('/device-transfer', function() use (&$app)
+Flight::route(DEVICE_TRANSFER, function() use (&$app)
 {
    $adminobj=$app->resolve("app");
    $adminobj->deviceTransfer();
 
 });
 
-Flight::route('/reset-user-pin', function() use (&$app)
+Flight::route(RESET_USER_PIN, function() use (&$app)
 {
    $adminobj=$app->resolve("user");
    $adminobj->resetPin();
 
 });
+
+Flight::route(DEVICE_TRACKER, function() use (&$app)
+{
+   $adminobj=$app->resolve("app");
+   $adminobj->trackDevice();
+
+});
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -35,9 +35,9 @@
         
      }
      /**
-      * Function name
+      * addDeviceDetails
       *
-      * what the function does
+      * add new device
       *
       * @param (type) (name) about this param
       * @return (type) (name)
@@ -89,9 +89,9 @@
 
       
      /**
-      * Function name
+      * listDeviceDetails
       *
-      * what the function does
+      * get all  device lists
       *
       * @param (type) (name) about this param
       * @return (type) (name)
@@ -116,7 +116,6 @@
 
           $deviceInformationArray=array();
           $deviceDetails=json_decode(Flight::request()->getBody(),true);
-          //$response=$this->admin->getDeviceInfoFromIMEI();
           $is_valid = GUMP::is_valid($deviceDetails, array(
               'IMEI' => 'required'
           ));

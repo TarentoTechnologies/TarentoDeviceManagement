@@ -29,8 +29,8 @@ getassigned device list
 
 
 device transfer api request
-
 {
+
 "appId":1,
 "apiToken":"111111",
  "oldOwnerPin":"111",
@@ -41,15 +41,21 @@ device transfer api request
 
 }
 
+device tracker
 
-pin reset api
 
 {
 "appId":1,
 "apiToken":"111111",
-"employee_id":"111",
-"pin":"1111"
+"IMEI":"2431442",
+"currentLocation":"test",
+"ip":"xxx.xxx.xxx.xxx",
+"wifi":"1334444",
+"osVersion":"5",
+"pin":"111"
 }
+
+
 
 
 

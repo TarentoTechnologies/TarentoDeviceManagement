@@ -20,7 +20,7 @@ use \Flight;
         $this->user=$user;
      }
      /**
-      * Function name
+      * getAssignedDevices
       *
       * what the function does
       *
@@ -48,9 +48,9 @@ use \Flight;
            }
      }
      /**
-      * Function name
+      * changePin
       *
-      * what the function does
+      * change user pin
       *
       * @param (type) (name) about this param
       * @return (type) (name)
@@ -79,9 +79,9 @@ use \Flight;
            }
      }
      /**
-      * Function name
+      * resetPin
       *
-      * what the function does
+      * reset user pin
       *
       * @param (type) (name) about this param
       * @return (type) (name)
