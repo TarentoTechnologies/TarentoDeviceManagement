@@ -4,6 +4,10 @@
  use \GUMP;
  use App\Models;
 
+/*AdminController 
+* To handle all the web admin operations
+*
+*/
  class AdminController 
  {
 
@@ -72,11 +76,16 @@
            $deviceInformationArray[]=$deviceDetails["purpose"];
            $deviceInformationArray[]=$deviceDetails["comments"];
            $deviceInformationArray[]=3;
+
+      /*     error_log("========================================");
+           error_log(print_r($deviceInformationArray,true));
+           error_log("========================================");*/
            $response=$this->admin->registerDevices($deviceInformationArray);
+           Flight::json($response);
            }
            else 
            {
-           	echo Flight::json(array("statusCode"=>400,"errorMessage"=>"Bad Request","response"=>$is_valid));
+           	echo Flight::json(array(API_RESPONSE_STATUS_CODE=>400,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Bad Request","response"=>$is_valid));
            }
 
      	  } 
@@ -117,7 +126,7 @@
           $deviceInformationArray=array();
           $deviceDetails=json_decode(Flight::request()->getBody(),true);
           $is_valid = GUMP::is_valid($deviceDetails, array(
-              'IMEI' => 'required'
+              'IMEI' =>'required'
           ));
           if($is_valid === true) 
           {
@@ -127,9 +136,24 @@
            }
            else 
            {
-            echo Flight::json(array("statusCode"=>400,"errorMessage"=>"Bad Request","response"=>$is_valid));
+            echo Flight::json(array(API_RESPONSE_STATUS_CODE=>400,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Bad Request",API_RESPONSE=>$is_valid));
            }
           //Flight::json($response);
+     }
+     /**
+      * getTrackingDetails()
+      *
+      * getTracking information
+      *
+      * @param (type) (name) about this param
+      * @return (type) (name)
+      */
+
+     public function getTrackingDetails()
+     {
+            $response=$this->admin->getTrackInfo();
+            Flight::json($response);
+          
      }
 
 }

@@ -1,8 +1,12 @@
 <?php
  namespace App\Controllers;
-use \Flight;
+ use \Flight;
  use \GUMP;
  use App\Models;
+ /*
+ *To handle all the user operations
+ *
+ */
  class UserController 
  {
 
@@ -44,7 +48,7 @@ use \Flight;
            }
            else 
            {
-            echo Flight::json(array("statusCode"=>400,"errorMessage"=>"Bad Request","response"=>$is_valid));
+            echo Flight::json(array(API_RESPONSE_STATUS_CODE=>400,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Bad Request",API_RESPONSE=>$is_valid));
            }
      }
      /**
@@ -75,7 +79,7 @@ use \Flight;
            }
            else 
            {
-            echo Flight::json(array("statusCode"=>400,"errorMessage"=>"Bad Request","response"=>$is_valid));
+            echo Flight::json(array(API_RESPONSE_STATUS_CODE=>400,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Bad Request",API_RESPONSE=>$is_valid));
            }
      }
      /**
@@ -105,7 +109,7 @@ use \Flight;
            }
            else 
            {
-            echo Flight::json(array("statusCode"=>400,"errorMessage"=>"Bad Request","response"=>$is_valid));
+            echo Flight::json(array(API_RESPONSE_STATUS_CODE=>400,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Bad Request",API_RESPONSE=>$is_valid));
            }
      }
 

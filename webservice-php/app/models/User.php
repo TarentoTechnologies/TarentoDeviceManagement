@@ -1,7 +1,7 @@
 <?php
 namespace App\Models;
 use App\lib\DB; 
-Class User extends DB
+class User extends DB
 {
 	/**
      * getDeviceInfoFromIMEI
@@ -26,14 +26,14 @@ Class User extends DB
                      array_push($deviceInformation,(array)$result);
                      error_log(print_r($deviceInformation,true));
                  }
-
-                 return array("statusCode"=>200,"statusMessage"=>"Successfully added the device","response"=>$deviceInformation);
+                  
+                 return count($deviceInformation) ? array(API_RESPONSE_STATUS_CODE=>200,API_RESPONSE_STATUS_MESSAGE=>"Success",API_RESPONSE=>$deviceInformation) : array(API_RESPONSE_STATUS_CODE=>204,API_RESPONSE_STATUS_MESSAGE=>"You are not assigned with any device",API_RESPONSE=>$deviceInformation);
             
 
              }
              catch(Exception $e)
              {
-                  return array("statusCode"=>500,"errorMessage"=>"Failure");
+                  return array(API_RESPONSE_STATUS_CODE=>500,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Failure");
      
              }
     }
@@ -60,12 +60,12 @@ Class User extends DB
                  }
 
             
-            return  ($responseStatus==1) ?  array("statusCode"=>200,"statusMessage"=>"Success","response"=>array()) :  array("statusCode"=>500,"errorMessage"=>"Failure"); 
+            return  ($responseStatus==1) ?  array(API_RESPONSE_STATUS_CODE=>200,API_RESPONSE_STATUS_MESSAGE=>"Success",API_RESPONSE=>array()) :  array(API_RESPONSE_STATUS_CODE=>500,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Your old pin is invalid"); 
 
     	}
     	catch(Exception $e)
     	{
-            return array("statusCode"=>500,"errorMessage"=>"Failure");
+            return array(API_RESPONSE_STATUS_CODE=>500,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Failure");
     	}
     }
 
@@ -73,15 +73,28 @@ Class User extends DB
     {
     	try
     	{
-              $sql = "update users set pin=? where unique_id=?";
+    		  error_log(print_r($userInfo,true));
+              $sql ="CALL reset_user_pin(?,?)";
+              //$sql = "CALL device_track(?,?,?,?,?,?)";
               $response=parent::query($sql,$userInfo);
-              return array("statusCode"=>200,"statusMessage"=>"Sucess");
+              
+              error_log("======================");
+              error_log(print_r($response));
+              error_log("======================");
+               $responseStatus=0;
+               while($result=$response->fetchObject())
+               {
+                  isset($result->{1}) ? $responseStatus=$result->{1} : $responseStatus=$result->{0};
+               }
+
+            
+              return ($responseStatus==1) ?  array(API_RESPONSE_STATUS_CODE=>200,API_RESPONSE_STATUS_MESSAGE=>"Sucess") : array(API_RESPONSE_STATUS_CODE=>404,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Non-Existing-user");
             
 
     	}
     	catch(Exception $e)
     	{
-            return array("statusCode"=>500,"errorMessage"=>"Failure");
+            return array(API_RESPONSE_STATUS_CODE=>500,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Failure");
     	}
     }
 }
