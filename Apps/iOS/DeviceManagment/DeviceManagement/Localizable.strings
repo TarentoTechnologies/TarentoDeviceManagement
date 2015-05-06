@@ -1,0 +1,35 @@
+/* 
+  Localizable.strings
+  DeviceManagement
+
+  Created by Tabrez on 18/07/14.
+  Copyright (c) 2014 Tabrez. All rights reserved.
+*/
+
+"device_Number" = "Device number";
+
+"device_Type" = "Device type";
+
+"admin_Pin" = "Admin PIN (Optional)";
+
+"current_Owner_Pin" = "Owner PIN";
+
+"new_Owner_Pin" = "New owner PIN";
+
+"new_Owner_Id" = "New owner employee id";
+
+"device_Number_Empty_Error" = "Oops!. Device number is empty.";
+
+"device_Type_Empty_Error" = "Please enter device type.";
+
+"device_Number_Char_Validation_Error" = "Please enter only digits in device number field.";
+
+"admin_Pin_Empty_Error" = "Oops!. Admin pin number is empty.";
+
+"admin_Pin_Validation_Error" = "Please enter only digits in admin pin field.";
+
+"owner_Pin_Validation_Error" = "Please enter valid 4 digit owner pin code.";
+
+"new_Owner_Pin_Validation_Error" = "Please enter valid 4 digit new owner pin code.";
+
+"new_Owner_Employee_Id_Error" = "Please enter valid new owner employee id.";

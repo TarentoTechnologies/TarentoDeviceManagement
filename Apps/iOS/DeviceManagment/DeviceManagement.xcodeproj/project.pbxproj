@@ -1,0 +1,600 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		107B96DA1AF74E180080D9F2 /* DeviceTransferApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 107B96D91AF74E180080D9F2 /* DeviceTransferApi.m */; };
+		107B96DD1AF766F30080D9F2 /* DeviceTrackerApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 107B96DC1AF766F30080D9F2 /* DeviceTrackerApi.m */; };
+		10AA870D1AF88FB500E7206D /* GetDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AA870C1AF88FB500E7206D /* GetDeviceInfo.m */; };
+		10AA87131AF8A14900E7206D /* DMDeviceDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AA87121AF8A14900E7206D /* DMDeviceDetails.m */; };
+		10AA87171AF8A4E100E7206D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 10AA87151AF8A4E100E7206D /* Model.xcdatamodeld */; };
+		10AA87231AF8B89100E7206D /* DeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AA87221AF8B89100E7206D /* DeviceInfo.m */; };
+		10AA87261AF8CB7A00E7206D /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AA87251AF8CB7A00E7206D /* DataModel.m */; };
+		9EDEE81CA7A14DDC87E7C65F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C371987F5B04E35961C064D /* libPods.a */; };
+		ED2D244A19373354006CF80D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2D244919373354006CF80D /* Foundation.framework */; };
+		ED2D244C19373354006CF80D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2D244B19373354006CF80D /* CoreGraphics.framework */; };
+		ED2D244E19373354006CF80D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2D244D19373354006CF80D /* UIKit.framework */; };
+		ED2D245419373354006CF80D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED2D245219373354006CF80D /* InfoPlist.strings */; };
+		ED2D245619373354006CF80D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2D245519373354006CF80D /* main.m */; };
+		ED2D245A19373354006CF80D /* DeviceManagementAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2D245919373354006CF80D /* DeviceManagementAppDelegate.m */; };
+		ED2D245D19373354006CF80D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED2D245B19373354006CF80D /* Main.storyboard */; };
+		ED2D246219373354006CF80D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED2D246119373354006CF80D /* Images.xcassets */; };
+		ED5366CC197CE3EE0025B774 /* AppUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5366CB197CE3EE0025B774 /* AppUtility.m */; };
+		ED5366D0197D0BF20025B774 /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5366CF197D0BF20025B774 /* WebService.m */; };
+		ED5366D3197D0C2B0025B774 /* APIBase.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5366D2197D0C2B0025B774 /* APIBase.m */; };
+		ED6962AD197E574200ED8826 /* DeviceDetailsApi.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6962AC197E574200ED8826 /* DeviceDetailsApi.m */; };
+		ED6962B0197E583F00ED8826 /* ParserUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6962AF197E583F00ED8826 /* ParserUtility.m */; };
+		ED6962B3197E978700ED8826 /* DeviceAssignApi.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6962B2197E978700ED8826 /* DeviceAssignApi.m */; };
+		ED8147F41978FF4500BD4B53 /* DeviceInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8147F31978FF4500BD4B53 /* DeviceInfoVC.m */; };
+		ED8147F71978FF6900BD4B53 /* DeviceOwnerDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8147F61978FF6900BD4B53 /* DeviceOwnerDetailsVC.m */; };
+		ED8147FA1978FF8E00BD4B53 /* DeviceAssignDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8147F91978FF8E00BD4B53 /* DeviceAssignDetailsVC.m */; };
+		ED8147FE197917F000BD4B53 /* UIColor+CustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8147FD197917F000BD4B53 /* UIColor+CustomColors.m */; };
+		ED814802197920F100BD4B53 /* orange_scalable.png in Resources */ = {isa = PBXBuildFile; fileRef = ED814800197920F100BD4B53 /* orange_scalable.png */; };
+		ED814803197920F100BD4B53 /* orange_scalable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED814801197920F100BD4B53 /* orange_scalable@2x.png */; };
+		ED8148051979249B00BD4B53 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED8148041979249B00BD4B53 /* Localizable.strings */; };
+		ED8148081979299600BD4B53 /* NSString+LocalizedString.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8148071979299600BD4B53 /* NSString+LocalizedString.m */; };
+		EDB0909A197D232600C21601 /* AFNetWorkAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EDB09099197D232600C21601 /* AFNetWorkAPIClient.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		107B96D81AF74E180080D9F2 /* DeviceTransferApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceTransferApi.h; sourceTree = "<group>"; };
+		107B96D91AF74E180080D9F2 /* DeviceTransferApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceTransferApi.m; sourceTree = "<group>"; };
+		107B96DB1AF766F30080D9F2 /* DeviceTrackerApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceTrackerApi.h; sourceTree = "<group>"; };
+		107B96DC1AF766F30080D9F2 /* DeviceTrackerApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceTrackerApi.m; sourceTree = "<group>"; };
+		10AA870B1AF88FB500E7206D /* GetDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetDeviceInfo.h; sourceTree = "<group>"; };
+		10AA870C1AF88FB500E7206D /* GetDeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetDeviceInfo.m; sourceTree = "<group>"; };
+		10AA87111AF8A14900E7206D /* DMDeviceDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMDeviceDetails.h; sourceTree = "<group>"; };
+		10AA87121AF8A14900E7206D /* DMDeviceDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMDeviceDetails.m; sourceTree = "<group>"; };
+		10AA87161AF8A4E100E7206D /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		10AA87211AF8B89100E7206D /* DeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfo.h; sourceTree = "<group>"; };
+		10AA87221AF8B89100E7206D /* DeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfo.m; sourceTree = "<group>"; };
+		10AA87241AF8CB7A00E7206D /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
+		10AA87251AF8CB7A00E7206D /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
+		793BED49F2B02EA6EE0AD720 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		7C371987F5B04E35961C064D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED2D244619373354006CF80D /* DeviceManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeviceManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED2D244919373354006CF80D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		ED2D244B19373354006CF80D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		ED2D244D19373354006CF80D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		ED2D245119373354006CF80D /* DeviceManagement-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DeviceManagement-Info.plist"; sourceTree = "<group>"; };
+		ED2D245319373354006CF80D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		ED2D245519373354006CF80D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		ED2D245719373354006CF80D /* DeviceManagement-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DeviceManagement-Prefix.pch"; sourceTree = "<group>"; };
+		ED2D245819373354006CF80D /* DeviceManagementAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceManagementAppDelegate.h; sourceTree = "<group>"; };
+		ED2D245919373354006CF80D /* DeviceManagementAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceManagementAppDelegate.m; sourceTree = "<group>"; };
+		ED2D245C19373354006CF80D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ED2D246119373354006CF80D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		ED2D246819373354006CF80D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		ED2D247019373354006CF80D /* DeviceManagementTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DeviceManagementTests-Info.plist"; sourceTree = "<group>"; };
+		ED2D247219373354006CF80D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		ED2D247419373354006CF80D /* DeviceManagementTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceManagementTests.m; sourceTree = "<group>"; };
+		ED4873801998CFD900C9F411 /* Delegates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Delegates.h; sourceTree = "<group>"; };
+		ED5366CA197CE3EE0025B774 /* AppUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppUtility.h; sourceTree = "<group>"; };
+		ED5366CB197CE3EE0025B774 /* AppUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppUtility.m; sourceTree = "<group>"; };
+		ED5366CE197D0BF20025B774 /* WebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebService.h; sourceTree = "<group>"; };
+		ED5366CF197D0BF20025B774 /* WebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebService.m; sourceTree = "<group>"; };
+		ED5366D1197D0C2B0025B774 /* APIBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIBase.h; sourceTree = "<group>"; };
+		ED5366D2197D0C2B0025B774 /* APIBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIBase.m; sourceTree = "<group>"; };
+		ED6962AB197E574200ED8826 /* DeviceDetailsApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceDetailsApi.h; sourceTree = "<group>"; };
+		ED6962AC197E574200ED8826 /* DeviceDetailsApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceDetailsApi.m; sourceTree = "<group>"; };
+		ED6962AE197E583F00ED8826 /* ParserUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserUtility.h; sourceTree = "<group>"; };
+		ED6962AF197E583F00ED8826 /* ParserUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserUtility.m; sourceTree = "<group>"; };
+		ED6962B1197E978700ED8826 /* DeviceAssignApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceAssignApi.h; sourceTree = "<group>"; };
+		ED6962B2197E978700ED8826 /* DeviceAssignApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceAssignApi.m; sourceTree = "<group>"; };
+		ED8147F21978FF4500BD4B53 /* DeviceInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfoVC.h; sourceTree = "<group>"; };
+		ED8147F31978FF4500BD4B53 /* DeviceInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfoVC.m; sourceTree = "<group>"; };
+		ED8147F51978FF6900BD4B53 /* DeviceOwnerDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceOwnerDetailsVC.h; sourceTree = "<group>"; };
+		ED8147F61978FF6900BD4B53 /* DeviceOwnerDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceOwnerDetailsVC.m; sourceTree = "<group>"; };
+		ED8147F81978FF8E00BD4B53 /* DeviceAssignDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceAssignDetailsVC.h; sourceTree = "<group>"; };
+		ED8147F91978FF8E00BD4B53 /* DeviceAssignDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceAssignDetailsVC.m; sourceTree = "<group>"; };
+		ED8147FB1979174D00BD4B53 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		ED8147FC197917F000BD4B53 /* UIColor+CustomColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CustomColors.h"; sourceTree = "<group>"; };
+		ED8147FD197917F000BD4B53 /* UIColor+CustomColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CustomColors.m"; sourceTree = "<group>"; };
+		ED814800197920F100BD4B53 /* orange_scalable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orange_scalable.png; sourceTree = "<group>"; };
+		ED814801197920F100BD4B53 /* orange_scalable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orange_scalable@2x.png"; sourceTree = "<group>"; };
+		ED8148041979249B00BD4B53 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		ED8148061979299600BD4B53 /* NSString+LocalizedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LocalizedString.h"; sourceTree = "<group>"; };
+		ED8148071979299600BD4B53 /* NSString+LocalizedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LocalizedString.m"; sourceTree = "<group>"; };
+		EDB09098197D232600C21601 /* AFNetWorkAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetWorkAPIClient.h; sourceTree = "<group>"; };
+		EDB09099197D232600C21601 /* AFNetWorkAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetWorkAPIClient.m; sourceTree = "<group>"; };
+		EDB0909B197D235000C21601 /* ApiDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiDefines.h; sourceTree = "<group>"; };
+		FBF359E161CE403FE8C59160 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ED2D244319373354006CF80D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED2D244C19373354006CF80D /* CoreGraphics.framework in Frameworks */,
+				ED2D244E19373354006CF80D /* UIKit.framework in Frameworks */,
+				ED2D244A19373354006CF80D /* Foundation.framework in Frameworks */,
+				9EDEE81CA7A14DDC87E7C65F /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		10AA87101AF8A11B00E7206D /* ModelObjects */ = {
+			isa = PBXGroup;
+			children = (
+				10AA87111AF8A14900E7206D /* DMDeviceDetails.h */,
+				10AA87121AF8A14900E7206D /* DMDeviceDetails.m */,
+			);
+			name = ModelObjects;
+			sourceTree = "<group>";
+		};
+		10AA87141AF8A4B900E7206D /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				10AA87211AF8B89100E7206D /* DeviceInfo.h */,
+				10AA87221AF8B89100E7206D /* DeviceInfo.m */,
+				10AA87241AF8CB7A00E7206D /* DataModel.h */,
+				10AA87251AF8CB7A00E7206D /* DataModel.m */,
+				10AA87151AF8A4E100E7206D /* Model.xcdatamodeld */,
+			);
+			name = CoreDataModel;
+			sourceTree = "<group>";
+		};
+		6E6CC0D753025C09B945A999 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FBF359E161CE403FE8C59160 /* Pods.debug.xcconfig */,
+				793BED49F2B02EA6EE0AD720 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		ED2D243D19373354006CF80D = {
+			isa = PBXGroup;
+			children = (
+				107B96D81AF74E180080D9F2 /* DeviceTransferApi.h */,
+				10AA870B1AF88FB500E7206D /* GetDeviceInfo.h */,
+				10AA870C1AF88FB500E7206D /* GetDeviceInfo.m */,
+				107B96D91AF74E180080D9F2 /* DeviceTransferApi.m */,
+				107B96DB1AF766F30080D9F2 /* DeviceTrackerApi.h */,
+				107B96DC1AF766F30080D9F2 /* DeviceTrackerApi.m */,
+				ED2D244F19373354006CF80D /* DeviceManagement */,
+				ED2D246E19373354006CF80D /* DeviceManagementTests */,
+				ED2D244819373354006CF80D /* Frameworks */,
+				ED2D244719373354006CF80D /* Products */,
+				6E6CC0D753025C09B945A999 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		ED2D244719373354006CF80D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ED2D244619373354006CF80D /* DeviceManagement.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ED2D244819373354006CF80D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED2D244919373354006CF80D /* Foundation.framework */,
+				ED2D244B19373354006CF80D /* CoreGraphics.framework */,
+				ED2D244D19373354006CF80D /* UIKit.framework */,
+				ED2D246819373354006CF80D /* XCTest.framework */,
+				7C371987F5B04E35961C064D /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ED2D244F19373354006CF80D /* DeviceManagement */ = {
+			isa = PBXGroup;
+			children = (
+				10AA87101AF8A11B00E7206D /* ModelObjects */,
+				ED5366CD197D0BDE0025B774 /* Network */,
+				ED5366C5197CE3680025B774 /* Thrid Party Code */,
+				10AA87141AF8A4B900E7206D /* CoreDataModel */,
+				ED2D245819373354006CF80D /* DeviceManagementAppDelegate.h */,
+				ED2D245919373354006CF80D /* DeviceManagementAppDelegate.m */,
+				ED2D245B19373354006CF80D /* Main.storyboard */,
+				ED8147F21978FF4500BD4B53 /* DeviceInfoVC.h */,
+				ED8147F31978FF4500BD4B53 /* DeviceInfoVC.m */,
+				ED8147F51978FF6900BD4B53 /* DeviceOwnerDetailsVC.h */,
+				ED8147F61978FF6900BD4B53 /* DeviceOwnerDetailsVC.m */,
+				ED8147F81978FF8E00BD4B53 /* DeviceAssignDetailsVC.h */,
+				ED8147F91978FF8E00BD4B53 /* DeviceAssignDetailsVC.m */,
+				ED2D246119373354006CF80D /* Images.xcassets */,
+				ED8147FF197920DE00BD4B53 /* Images */,
+				ED2D245019373354006CF80D /* Supporting Files */,
+				ED8147FB1979174D00BD4B53 /* Constants.h */,
+				ED8147FC197917F000BD4B53 /* UIColor+CustomColors.h */,
+				ED8147FD197917F000BD4B53 /* UIColor+CustomColors.m */,
+				ED8148061979299600BD4B53 /* NSString+LocalizedString.h */,
+				ED8148071979299600BD4B53 /* NSString+LocalizedString.m */,
+			);
+			path = DeviceManagement;
+			sourceTree = "<group>";
+		};
+		ED2D245019373354006CF80D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ED8148041979249B00BD4B53 /* Localizable.strings */,
+				ED2D245119373354006CF80D /* DeviceManagement-Info.plist */,
+				ED2D245219373354006CF80D /* InfoPlist.strings */,
+				ED2D245519373354006CF80D /* main.m */,
+				ED2D245719373354006CF80D /* DeviceManagement-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ED2D246E19373354006CF80D /* DeviceManagementTests */ = {
+			isa = PBXGroup;
+			children = (
+				ED2D247419373354006CF80D /* DeviceManagementTests.m */,
+				ED2D246F19373354006CF80D /* Supporting Files */,
+			);
+			path = DeviceManagementTests;
+			sourceTree = "<group>";
+		};
+		ED2D246F19373354006CF80D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ED2D247019373354006CF80D /* DeviceManagementTests-Info.plist */,
+				ED2D247119373354006CF80D /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ED5366C5197CE3680025B774 /* Thrid Party Code */ = {
+			isa = PBXGroup;
+			children = (
+				ED5366CA197CE3EE0025B774 /* AppUtility.h */,
+				ED5366CB197CE3EE0025B774 /* AppUtility.m */,
+			);
+			name = "Thrid Party Code";
+			sourceTree = "<group>";
+		};
+		ED5366CD197D0BDE0025B774 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				ED6962AE197E583F00ED8826 /* ParserUtility.h */,
+				ED6962AF197E583F00ED8826 /* ParserUtility.m */,
+				ED6962AA197E571800ED8826 /* Base Api Objects */,
+				ED6962AB197E574200ED8826 /* DeviceDetailsApi.h */,
+				ED6962AC197E574200ED8826 /* DeviceDetailsApi.m */,
+				ED6962B1197E978700ED8826 /* DeviceAssignApi.h */,
+				ED6962B2197E978700ED8826 /* DeviceAssignApi.m */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		ED6962AA197E571800ED8826 /* Base Api Objects */ = {
+			isa = PBXGroup;
+			children = (
+				EDB09098197D232600C21601 /* AFNetWorkAPIClient.h */,
+				EDB09099197D232600C21601 /* AFNetWorkAPIClient.m */,
+				ED5366D1197D0C2B0025B774 /* APIBase.h */,
+				ED5366D2197D0C2B0025B774 /* APIBase.m */,
+				ED5366CE197D0BF20025B774 /* WebService.h */,
+				ED5366CF197D0BF20025B774 /* WebService.m */,
+				EDB0909B197D235000C21601 /* ApiDefines.h */,
+				ED4873801998CFD900C9F411 /* Delegates.h */,
+			);
+			name = "Base Api Objects";
+			sourceTree = "<group>";
+		};
+		ED8147FF197920DE00BD4B53 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				ED814800197920F100BD4B53 /* orange_scalable.png */,
+				ED814801197920F100BD4B53 /* orange_scalable@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ED2D244519373354006CF80D /* DeviceManagement */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED2D247819373354006CF80D /* Build configuration list for PBXNativeTarget "DeviceManagement" */;
+			buildPhases = (
+				4523AD07CCD643D7975E1D0A /* Check Pods Manifest.lock */,
+				ED2D244219373354006CF80D /* Sources */,
+				ED2D244319373354006CF80D /* Frameworks */,
+				ED2D244419373354006CF80D /* Resources */,
+				2D82C4D245C04959B66F3DBD /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DeviceManagement;
+			productName = DeviceManagement;
+			productReference = ED2D244619373354006CF80D /* DeviceManagement.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ED2D243E19373354006CF80D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = DeviceManagement;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = Tabrez;
+			};
+			buildConfigurationList = ED2D244119373354006CF80D /* Build configuration list for PBXProject "DeviceManagement" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ED2D243D19373354006CF80D;
+			productRefGroup = ED2D244719373354006CF80D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ED2D244519373354006CF80D /* DeviceManagement */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ED2D244419373354006CF80D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED814802197920F100BD4B53 /* orange_scalable.png in Resources */,
+				ED8148051979249B00BD4B53 /* Localizable.strings in Resources */,
+				ED814803197920F100BD4B53 /* orange_scalable@2x.png in Resources */,
+				ED2D246219373354006CF80D /* Images.xcassets in Resources */,
+				ED2D245419373354006CF80D /* InfoPlist.strings in Resources */,
+				ED2D245D19373354006CF80D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2D82C4D245C04959B66F3DBD /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4523AD07CCD643D7975E1D0A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ED2D244219373354006CF80D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED5366D0197D0BF20025B774 /* WebService.m in Sources */,
+				ED6962AD197E574200ED8826 /* DeviceDetailsApi.m in Sources */,
+				10AA870D1AF88FB500E7206D /* GetDeviceInfo.m in Sources */,
+				ED8147FE197917F000BD4B53 /* UIColor+CustomColors.m in Sources */,
+				ED8147FA1978FF8E00BD4B53 /* DeviceAssignDetailsVC.m in Sources */,
+				ED5366CC197CE3EE0025B774 /* AppUtility.m in Sources */,
+				ED6962B0197E583F00ED8826 /* ParserUtility.m in Sources */,
+				10AA87231AF8B89100E7206D /* DeviceInfo.m in Sources */,
+				10AA87171AF8A4E100E7206D /* Model.xcdatamodeld in Sources */,
+				EDB0909A197D232600C21601 /* AFNetWorkAPIClient.m in Sources */,
+				ED8147F41978FF4500BD4B53 /* DeviceInfoVC.m in Sources */,
+				10AA87261AF8CB7A00E7206D /* DataModel.m in Sources */,
+				ED2D245619373354006CF80D /* main.m in Sources */,
+				ED2D245A19373354006CF80D /* DeviceManagementAppDelegate.m in Sources */,
+				ED8148081979299600BD4B53 /* NSString+LocalizedString.m in Sources */,
+				ED8147F71978FF6900BD4B53 /* DeviceOwnerDetailsVC.m in Sources */,
+				107B96DD1AF766F30080D9F2 /* DeviceTrackerApi.m in Sources */,
+				107B96DA1AF74E180080D9F2 /* DeviceTransferApi.m in Sources */,
+				ED5366D3197D0C2B0025B774 /* APIBase.m in Sources */,
+				ED6962B3197E978700ED8826 /* DeviceAssignApi.m in Sources */,
+				10AA87131AF8A14900E7206D /* DMDeviceDetails.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		ED2D245219373354006CF80D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED2D245319373354006CF80D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		ED2D245B19373354006CF80D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED2D245C19373354006CF80D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		ED2D247119373354006CF80D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED2D247219373354006CF80D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ED2D247619373354006CF80D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: George Wheeler (5TE93ZK4T4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: George Wheeler (5TE93ZK4T4)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "2bd9cde4-4e97-4b86-a3ee-abc8a93cf6ed";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		ED2D247719373354006CF80D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: George Wheeler (5TE93ZK4T4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: George Wheeler (5TE93ZK4T4)";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PROVISIONING_PROFILE = "2bd9cde4-4e97-4b86-a3ee-abc8a93cf6ed";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ED2D247919373354006CF80D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FBF359E161CE403FE8C59160 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: George Wheeler (5TE93ZK4T4)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DeviceManagement/DeviceManagement-Prefix.pch";
+				INFOPLIST_FILE = "DeviceManagement/DeviceManagement-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "2bd9cde4-4e97-4b86-a3ee-abc8a93cf6ed";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		ED2D247A19373354006CF80D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 793BED49F2B02EA6EE0AD720 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: George Wheeler (5TE93ZK4T4)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DeviceManagement/DeviceManagement-Prefix.pch";
+				INFOPLIST_FILE = "DeviceManagement/DeviceManagement-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "2bd9cde4-4e97-4b86-a3ee-abc8a93cf6ed";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ED2D244119373354006CF80D /* Build configuration list for PBXProject "DeviceManagement" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED2D247619373354006CF80D /* Debug */,
+				ED2D247719373354006CF80D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED2D247819373354006CF80D /* Build configuration list for PBXNativeTarget "DeviceManagement" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED2D247919373354006CF80D /* Debug */,
+				ED2D247A19373354006CF80D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		10AA87151AF8A4E100E7206D /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				10AA87161AF8A4E100E7206D /* Model.xcdatamodel */,
+			);
+			currentVersion = 10AA87161AF8A4E100E7206D /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = ED2D243E19373354006CF80D /* Project object */;
+}
