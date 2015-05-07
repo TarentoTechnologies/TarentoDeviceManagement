@@ -25,6 +25,7 @@
 @property (nonatomic, retain) NSString * type;
 @property (nonatomic, retain) NSString * updatedAt;
 @property (nonatomic, retain) NSString * userId;
+@property (nonatomic ,retain) NSString * firstName;
 @property (strong ,nonatomic) DMDeviceDetails *deviceDetails;
 
 

@@ -16,8 +16,6 @@
 @interface DeviceInfoVC ()
 
 @property (strong, nonatomic) NSMutableArray *textFieldsArray;
-@property (strong, nonatomic) DeviceDetailsApi *detailsApiObject;
-@property (strong, nonatomic) DeviceTrackerApi * trackerApiObject;
 
 @end
 
@@ -35,14 +33,12 @@
 @synthesize activeTextField;
 @synthesize textFieldIndex;
 @synthesize textFieldsArray;
-@synthesize detailsApiObject;
 
 
 #define NUMBER_OF_TEXTFILEDS 3
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -51,21 +47,27 @@
 }
 
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
     [self initializeView];
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     if ([self isdeviceDetailsPresent]) {
         [self showDeviceDetailsScreen];
-        
     }
 }
 
 
-- (void)initializeView
-{
+- (void)initializeView {
     UIEdgeInsets insets = UIEdgeInsetsMake(4, 4, 4, 4);
     
     [self.submitButton setBackgroundImage:[[UIImage imageNamed:@"orange_scalable.png"] resizableImageWithCapInsets:insets] forState:UIControlStateNormal];
@@ -79,15 +81,13 @@
 }
 
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 
-- (BOOL)validateData
-{    
+- (BOOL)validateData {
     BOOL success = YES;
     
     if (!deviceNumberTextField.text.length) {
@@ -104,51 +104,32 @@
         [[AppUtility sharedInstance] showAlertWithTitle:@"" message:[NSString localizedValueForKey:@"device_Type_Empty_Error"]];
         success = NO;
     }
-//    else if (!adminPinTextField.text.length) {
-//        [[AppUtility sharedInstance] showAlertWithTitle:@"" message:[NSString localizedValueForKey:@"admin_Pin_Empty_Error"]];
-//        success = NO;
-//    }
-//    else if ([[AppUtility sharedInstance] isNonNumericCharsPresent:adminPinTextField.text]) {
-//        [[AppUtility sharedInstance] showAlertWithTitle:@"" message:[NSString localizedValueForKey:@"admin_Pin_Validation_Error"]];
-//        success = NO;
-//    }
     
     return success;
 }
 
 
-- (IBAction)submitButtonClicked:(id)sender
-{
+- (IBAction)submitButtonClicked:(id)sender {
     BOOL success = [self validateData];
     
     if (success) {
-        
         [self callDeviceDetailsApi];
     }
 }
 
 
-- (void)showDeviceDetailsScreen
-{
+- (void)showDeviceDetailsScreen {
     [self performSegueWithIdentifier:@"ownerDetails" sender:self];
 }
 
 
-- (void)callDeviceDetailsApi
-{
+- (void)callDeviceDetailsApi {
     __block GetDeviceInfo *deviceInfoApi = [GetDeviceInfo new];
     
     deviceInfoApi.appId = @1;
     deviceInfoApi.apiToken =@"111111";
     deviceInfoApi.deviceId =deviceNumberTextField.text;
     deviceInfoApi.type = deviceTypeTextField.text;
-    
-    
-    
-    if (API_TESTING) {
-        [self showDeviceDetailsScreen];
-        return;
-    }
     
     [[WebService sharedInstance] postRequest:deviceInfoApi andCallback:^(APIBase *apiBase, id JSON,NSError *error) {
         
@@ -157,8 +138,6 @@
         if (nil == error && nil == deviceInfoApi.errormessage) {
             
             [[DataModel sharedInstance] storeDeviceDetils:deviceInfoApi.deviceDetails];
-            //self.trackerApiObject = trackerApi;
-            
             [self showDeviceDetailsScreen];
         }
         else {
@@ -168,8 +147,7 @@
 }
 
 
-- (IBAction)previousBarButtonClicked:(id)sender
-{
+- (IBAction)previousBarButtonClicked:(id)sender {
     if(textFieldIndex > 0) {
 		textFieldIndex--;
 		UITextField *textField = (UITextField *)[textFieldsArray objectAtIndex:textFieldIndex];
@@ -178,8 +156,7 @@
 }
 
 
-- (IBAction)nextBarButtonClicked:(id)sender
-{
+- (IBAction)nextBarButtonClicked:(id)sender {
     if(textFieldIndex < (NUMBER_OF_TEXTFILEDS - 1)) {
 		textFieldIndex++;
 		UITextField *textField = (UITextField *)[textFieldsArray objectAtIndex:textFieldIndex];
@@ -188,21 +165,8 @@
 }
 
 
-- (IBAction)doneBarButtonClicked:(id)sender
-{
+- (IBAction)doneBarButtonClicked:(id)sender {
     [self showNormalView];
-}
-
-
-- (void)storeDeviceNumberTypeAndAdminPin
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    [defaults setObject:deviceNumberTextField.text forKey:CURRENTDEVICENUMBER];
-    [defaults setObject:adminPinTextField.text forKey:ADMINPINCODE];
-    [defaults setObject:deviceTypeTextField.text forKey:DEVICETYPE];
-    
-    [defaults synchronize];
 }
 
 
@@ -210,15 +174,13 @@
 #pragma mark - text field delegates...
 
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
 	BOOL edit = YES;
 	return edit;
 }
 
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
     [[AppUtility sharedInstance] disableHighLightOfTextField:activeTextField];
     textFieldIndex = [textField tag];
     activeTextField = textField;
@@ -235,8 +197,7 @@
 }
 
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if(textFieldIndex < (NUMBER_OF_TEXTFILEDS - 1)) {
 		textFieldIndex++;
 		UITextField *textField = (UITextField *)[textFieldsArray objectAtIndex:textFieldIndex];
@@ -256,8 +217,7 @@
 /**
  * enables toolbar and it's barbuttons according to textfield.
  */
-- (void)enableToolBarButtons
-{
+- (void)enableToolBarButtons {
     if (!textFieldIndex) {
         self.previousBarButton.enabled = NO;
         self.nextBarButton.enabled = YES;
@@ -282,8 +242,7 @@
 /**
  * resigns textfiled, hides toolbar and brings view to normal.
  */
-- (void)showNormalView
-{
+- (void)showNormalView {
     activeTextField.inputAccessoryView = nil;
     self.toolBar.alpha = 0.0f;
     [[AppUtility sharedInstance] disableHighLightOfTextField:activeTextField];
@@ -302,17 +261,14 @@
 - (BOOL)isdeviceDetailsPresent {
     
     DeviceInfo *info = [[DataModel sharedInstance] deviceDetails];
-    
     return (info != nil);
 }
 
 
 #pragma mark -
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    DeviceOwnerDetailsVC *ownerDetailVC = (DeviceOwnerDetailsVC *)segue.destinationViewController;
-    ownerDetailVC.detailsApi = self.detailsApiObject;
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    ;
 }
 
 

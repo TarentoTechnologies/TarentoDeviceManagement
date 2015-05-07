@@ -5,6 +5,7 @@
         <attribute name="createdAt" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="deviceId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="employeeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imei" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="make" optional="YES" attributeType="String" syncable="YES"/>
@@ -15,6 +16,6 @@
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="DeviceInfo" positionX="-63" positionY="-18" width="128" height="225"/>
+        <element name="DeviceInfo" positionX="-63" positionY="-18" width="128" height="240"/>
     </elements>
 </model>

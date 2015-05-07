@@ -28,7 +28,7 @@
 
 #define IS_IPHONE4 (([[UIScreen mainScreen] bounds].size.height-480)?NO:YES)
 
-#define MAX_PIN_CODE_DIGITS 4
+#define MAX_PIN_CODE_DIGITS 3
 
 #define API_TESTING 0
 

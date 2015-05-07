@@ -19,27 +19,25 @@
 @synthesize type;
 
 
--(id)init {
+- (id)init {
     
     self = [super init];
-    
     if (self) {
         //initializtion of self
         self.deviceDetails = [DMDeviceDetails new];
     }
-    
     return self;
 }
 
-- (NSString *)apiName
-{
+
+- (NSString *)apiName {
     return kGetDeviceInfo;
     
     //    return [NSString stringWithFormat:@"%@%@",[super apiName],kDeviceDetailsApiUrl];
 }
 
-- (NSMutableDictionary *)createJsonObjectForRequest
-{
+
+- (NSMutableDictionary *)createJsonObjectForRequest {
     [super createJsonObjectForRequest];
     
     NSMutableDictionary *body = [[NSMutableDictionary alloc] initWithObjectsAndKeys:self.appId, @"appId", self.apiToken, @"apiToken", self.deviceId , @"device_id", self.type ,@"type", nil];
@@ -50,8 +48,8 @@
     return body;
 }
 
-- (id)parseJsonObjectFromResponse:(id)response
-{
+
+- (id)parseJsonObjectFromResponse:(id)response {
     [super parseJsonObjectFromResponse:response];
 
     if (response == [NSNull null]) {
@@ -67,27 +65,11 @@
     if (nil != userData) {
 
         if ([userData respondsToSelector:@selector(objectForKey:)])  {
-//            self.appId = [detailDict objectForKey:@"appId"];
-//            self.apiToken = [detailDict objectForKey:@"apiToken"];
-//            self.deviceId = [detailDict objectForKey:@"device_id"];
-//            self.type  = [detailDict objectForKey:@"type"];
-           
-            _deviceDetails.identifier = [ParserUtility JSONObjectValue:userData forKey:kIdentifier];
-            _deviceDetails.employeeId = [ParserUtility JSONObjectValue:userData forKey:kEmployeeId];;
-            _deviceDetails.imei = [ParserUtility JSONObjectValue:userData forKey:kImei];
-            _deviceDetails.createdAt =[ParserUtility JSONObjectValue:userData forKey:kCreatedAt];
-            _deviceDetails.userId = [ParserUtility JSONObjectValue:userData forKey:kUpdatedAt];
-            _deviceDetails.os = [ParserUtility JSONObjectValue:userData forKey:kOs];
-            _deviceDetails.type = [ParserUtility JSONObjectValue:userData forKey:kType];
-            _deviceDetails.name =[ParserUtility JSONObjectValue:userData forKey:kName];
-            _deviceDetails.make = [ParserUtility JSONObjectValue:userData forKey:kMake];
-            _deviceDetails.deviceId = [ParserUtility JSONObjectValue:userData forKey:kDeviceId];
-            _deviceDetails.accessoryInfo = [ParserUtility JSONObjectValue:userData forKey:kAccessoryInfo];
-            //_deviceDetails.updatedAt = [detailDict objectForKey:kUpdatedAt];
-            _deviceDetails.updatedAt =  [ParserUtility JSONObjectValue:userData forKey:kUpdatedAt];
-            
+            [_deviceDetails parseDeviceDetailsFromResponse:userData];
         }
     }
     return nil;
 }
+
+
 @end

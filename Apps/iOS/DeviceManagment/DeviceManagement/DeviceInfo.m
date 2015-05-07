@@ -24,7 +24,7 @@
 @dynamic type;
 @dynamic updatedAt;
 @dynamic userId;
-
+@dynamic firstName;
 
 
 + (DeviceInfo *)initWithContext:(NSManagedObjectContext *)context
@@ -72,6 +72,7 @@
     info.make = deviceDetails.make;
     info.os = deviceDetails.os;
     info.type = deviceDetails.type;
+    info.firstName = deviceDetails.firstName;
     
    return  [[DataModel sharedInstance] saveContext];
 }

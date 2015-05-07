@@ -11,6 +11,7 @@
 #import "DeviceDetailsApi.h"
 #import "DeviceAssignApi.h"
 #import "DeviceTransferApi.h"
+#import "DataModel.h"
 
 @interface DeviceAssignDetailsVC ()
 
@@ -32,12 +33,10 @@
 @synthesize textFieldIndex;
 @synthesize textFieldsArray;
 @synthesize ownerNameLabel;
-@synthesize deviceInfo;
 @synthesize reassignDelegate;
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
     if (self) {
@@ -48,17 +47,14 @@
 }
 
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
     [self initializeView];
 }
 
 
-- (void)initializeView
-{
+- (void)initializeView {
     UIEdgeInsets insets = UIEdgeInsetsMake(4, 4, 4, 4);
     
     [self.assignButton setBackgroundImage:[[UIImage imageNamed:@"orange_scalable.png"] resizableImageWithCapInsets:insets] forState:UIControlStateNormal];
@@ -77,34 +73,27 @@
 }
 
 
-- (void)showDetails
-{
-    if (API_TESTING) {
-        self.deviceNameLabel.text = @"iPad Mini";
-        self.deviceNumberLabel.text = @"023";
-        self.ownerNameLabel.text = @"Venkatesan";
-        return;
-    }
+- (void)showDetails {
+    DeviceInfo *info =[[DataModel sharedInstance]deviceDetails];
     
-    deviceNumberLabel.text = deviceInfo.hw_asset_number;
-    ownerNameLabel.text = deviceInfo.employee_name;
-    
-    NSArray *assetArray = [deviceInfo.asset componentsSeparatedByString:@"/"];
-    if (assetArray.count) {
-        self.deviceNumberLabel.text = [assetArray lastObject];
-    }
+    deviceNumberLabel.text = info.deviceId;
+    ownerNameLabel.text = info.firstName;
+    deviceNameLabel.text = info.name;
 }
 
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 
-- (IBAction)assignButtonClicked:(id)sender
-{
+- (DeviceInfo *)deviceInfo {
+    return [[DataModel sharedInstance] deviceDetails];
+}
+
+
+- (IBAction)assignButtonClicked:(id)sender {
     BOOL success = [self validateData];
     if (success) {
         [self callReassignApi];
@@ -112,8 +101,7 @@
 }
 
 
-- (BOOL)validateData
-{
+- (BOOL)validateData {
     BOOL success = YES;
     
     if (self.ownerPinTextField.text.length < MAX_PIN_CODE_DIGITS) {
@@ -139,34 +127,31 @@
 }
 
 
-- (void)callReassignApi
-{
+- (void)callReassignApi {
     __block DeviceTransferApi *apiObject = [[DeviceTransferApi alloc] init];
-//    apiObject.hardwareid = self.deviceInfo.hid;
-//    apiObject.huid = self.deviceInfo.huid;
-//    apiObject.oldempid = self.deviceInfo.employee_id;
-//    apiObject.oldpin = self.ownerPinTextField.text;
-//    apiObject.newempid = self.changedOwnerIdTextField.text;
-//    apiObject.newpin = self.changedOwnerPinTextField.text;
     
-    apiObject.appId =@1;
+    DeviceInfo *info = [self deviceInfo];
+    
+    apiObject.appId = @1;
     apiObject.apiToken = @"111111";
-    apiObject.oldOwnerPin = @"111";
-    apiObject.oldOwnerIdentifier = @"111";
-    apiObject.ownerPin = @"111";
-    apiObject.ownerIdentifier =@"114";
-    apiObject.imei = @"2431442";
-    
+    apiObject.oldOwnerPin = self.ownerPinTextField.text;
+    apiObject.oldOwnerIdentifier = info.identifier;
+    apiObject.ownerPin = self.changedOwnerPinTextField.text;
+    apiObject.ownerIdentifier = self.changedOwnerIdTextField.text;
+    apiObject.imei = info.imei;
+    apiObject.deviceId = info.deviceId;
+    apiObject.type = self.typeTextField.text;
+
     [[WebService sharedInstance] postRequest:apiObject andCallback:^(APIBase *apiBase, id JSON, NSError *error) {
         
         apiObject = (DeviceTransferApi *)apiBase;
         
         if (nil == error && nil == apiObject.errormessage) {
             
-//           if ([self.reassignDelegate respondsToSelector:@selector(DeviceReassignedToNewUser:)]) {
-//               apiObject.asset = self.deviceInfo.asset;
-//               [reassignDelegate DeviceReassignedToNewUser:apiObject.deviceDetails];
-//           }
+            [[DataModel sharedInstance] storeDeviceDetils:apiObject.details];
+            if ([self.reassignDelegate respondsToSelector:@selector(deviceReassignedToNewUser)]) {
+                [reassignDelegate deviceReassignedToNewUser];
+            }
             [self popBackToDetails];
         }
         else {
@@ -176,8 +161,7 @@
 }
 
 
-- (void)popBackToDetails
-{
+- (void)popBackToDetails {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -186,15 +170,13 @@
 #pragma mark - text field delegates...
 
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
 	BOOL edit = YES;
 	return edit;
 }
 
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
     [[AppUtility sharedInstance] disableHighLightOfTextField:activeTextField];
     textFieldIndex = [textField tag];
     activeTextField = textField;
@@ -216,8 +198,7 @@
 }
 
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if(textFieldIndex < (textFieldsArray.count - 1)) {
 		textFieldIndex++;
 		UITextField *textField = (UITextField *)[textFieldsArray objectAtIndex:textFieldIndex];
@@ -231,8 +212,7 @@
 }
 
 
-- (void)showNormalView
-{
+- (void)showNormalView {
     activeTextField.inputAccessoryView = nil;
     [[AppUtility sharedInstance] disableHighLightOfTextField:activeTextField];
     [activeTextField resignFirstResponder];

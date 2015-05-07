@@ -9,10 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Delegates.h"
 
-@class DeviceInfo;
 @class DeviceDetailsApi;
-
-
 
 @interface DeviceAssignDetailsVC : UIViewController
 
@@ -23,16 +20,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *changedOwnerPinTextField;
 @property (weak, nonatomic) IBOutlet UIButton *assignButton;
 @property (weak, nonatomic) IBOutlet UILabel *ownerNameLabel;
+@property (weak, nonatomic) IBOutlet UITextField *typeTextField;
 
 @property (weak, nonatomic) UITextField *activeTextField;
 @property (nonatomic) NSInteger textFieldIndex;
-
-//@property (strong, nonatomic) DeviceInfo *deviceInfo;
-
-@property (strong, nonatomic) DeviceDetailsApi *deviceInfo;
-
 @property (weak, nonatomic) id < DeviceReassignDelegate > reassignDelegate;
-
 
 
 - (IBAction)assignButtonClicked:(id)sender;

@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @class DeviceDetailsApi;
+@class DeviceTransferApi;
 
 @protocol DeviceReassignDelegate < NSObject >
 
-@optional;
-- (void)DeviceReassignedToNewUser:(DeviceDetailsApi *)details;
+@required;
+- (void)deviceReassignedToNewUser;
 
 @end

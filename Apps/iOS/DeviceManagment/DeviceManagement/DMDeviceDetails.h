@@ -22,21 +22,27 @@
 @property (strong, nonatomic) NSString *os;
 @property (strong, nonatomic) NSString *updatedAt;
 @property (strong, nonatomic) NSString *userId;
+@property (strong, nonatomic) NSString *firstName;
+
+- (void)parseDeviceDetailsFromResponse:(NSDictionary *)userData;
 
 @end
 
 
+
 //responseData =     {
-//    IMEI = dsjdjdjasjdsajdsa;
-//    accessoryinfo = ssdjsaddjsa;
-//    "created_at" = "0000-00-00 00:00:00";
-//    "device_id" = 1111;
-//    "employee_id" = "<null>";
-//    id = 23;
-//    make = wwq;
-//    name = weqew;
-//    os = ddi;
-//    type = Mobile;
+//    IMEI = 2431442;
+//    accessoryinfo = sdadsadas;
+//    "created_at" = "2014-12-12 00:00:00";
+//    "device_id" = 1;
+//    "employee_id" = 111;
+//    "first_name" = Test1;
+//    id = 22;
+//    "last_name" = "";
+//    make = sdaadsdsa;
+//    name = dssdsad;
+//    os = sassa;
+//    type = iphone;
 //    "updated_at" = "<null>";
-//    "user_id" = "<null>";
+//    "user_id" = 1;
 //};

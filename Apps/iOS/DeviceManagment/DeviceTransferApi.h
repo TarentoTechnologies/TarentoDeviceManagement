@@ -8,6 +8,8 @@
 
 #import "APIBase.h"
 
+@class DMDeviceDetails;
+
 @interface DeviceTransferApi : APIBase
 
 @property(strong, nonatomic) NSNumber *appId;
@@ -18,19 +20,42 @@
 @property(strong, nonatomic) NSString *ownerIdentifier;
 @property(strong, nonatomic) NSString *imei;
 @property(strong, nonatomic) NSString *deviceId;
+@property(strong, nonatomic) NSString *type;
+@property(strong, nonatomic) DMDeviceDetails *details;
 
 
 
 @end
 
-///device-transfer
+///device-transfer request
 
 //{
 //    "appId":1,
 //    "apiToken":"111111",
-//    "oldOwnerPin":"111",
+//    "oldOwnerPin":"114",
 //    "OldOwnerIdentifier":"114",
-//    "newOwnerPin":"123",
+//    "newOwnerPin":"111",
 //    "newOwnerIdentifier":"111",
-//    "device_id":"2431442"
+//    "device_id":"1",
+//    "type":"iphone"
 //}
+
+
+
+//device - transfer response
+//responseData =     {
+//    IMEI = 2431442;
+//    accessoryinfo = sdadsadas;
+//    "created_at" = "2014-12-12 00:00:00";
+//    "device_id" = 1;
+//    "employee_id" = 111;
+//    "first_name" = Test1;
+//    id = 22;
+//    "last_name" = "";
+//    make = sdaadsdsa;
+//    name = dssdsad;
+//    os = sassa;
+//    type = iphone;
+//    "updated_at" = "<null>";
+//    "user_id" = 1;
+//};

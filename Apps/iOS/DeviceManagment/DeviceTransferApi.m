@@ -7,6 +7,7 @@
 //
 
 #import "DeviceTransferApi.h"
+#import "DMDeviceDetails.h"
 
 @implementation DeviceTransferApi
 
@@ -18,29 +19,27 @@
 @synthesize ownerIdentifier;
 @synthesize imei;
 @synthesize deviceId;
-- (id)init
-{
+
+
+- (id)init {
     self = [super init];
     
     if (self) {
         // Initialization..
+        self.details = [[DMDeviceDetails alloc] init];
     }
-    
     return self;
 }
 
-- (NSString *)apiName
-{
+- (NSString *)apiName {
     return kDeviceTransferApiUrl;
-    
     //    return [NSString stringWithFormat:@"%@%@",[super apiName],kDeviceDetailsApiUrl];
 }
 
-- (NSMutableDictionary *)createJsonObjectForRequest
-{
+- (NSMutableDictionary *)createJsonObjectForRequest {
     [super createJsonObjectForRequest];
     
-    NSMutableDictionary *body = [[NSMutableDictionary alloc] initWithObjectsAndKeys:self.appId, @"appId", self.apiToken, @"apiToken", self.ownerPin,@"oldOwnerPin", self.ownerIdentifier,@"OldOwnerIdentifier",self.oldOwnerPin,@"newOwnerPin",self.oldOwnerIdentifier,@"newOwnerIdentifier",self.deviceId,@"device_id" ,nil];
+    NSMutableDictionary *body = [[NSMutableDictionary alloc] initWithObjectsAndKeys:self.appId, @"appId", self.apiToken, @"apiToken", self.oldOwnerPin, @"newOwnerPin",self.oldOwnerIdentifier,@"newOwnerIdentifier",self.ownerPin,@"oldOwnerPin",self.ownerIdentifier,@"OldOwnerIdentifier",self.deviceId,@"device_id", self.type,@"type",nil];
     
 //    NSMutableDictionary *jsonObject = [[NSMutableDictionary alloc] initWithObjectsAndKeys:body,nil];
     
@@ -49,41 +48,31 @@
     return body;
 }
 
-- (void)checkForNilValues
-{
+
+- (void)checkForNilValues {
     [super checkForNilValues];
 }
 
-//- (id)parseJsonObjectFromResponse:(id)response
-//{
-//    [super parseJsonObjectFromResponse:response];
-//    
-//    if (response == [NSNull null]) {
-//        return nil;
-//    }
-//    
-//    if (nil != self.errormessage) {
-//        return nil;
-//    }
-//    
-//   // NSMutableArray *userData = [response objectForKey:kResponseData];
-//    
-//    if (nil != userData) {
-//        
-//        if (userData.count > 0) {
-//            NSDictionary *detailDict = [userData objectAtIndex:0];
-//            
-//            self.deviceDetails.employee_id = [detailDict objectForKey:@"employee_id"];
-//            self.deviceDetails.employee_name = [detailDict objectForKey:@"employee_name"];
-//            self.deviceDetails.hid = [detailDict objectForKey:@"hid"];
-//            self.deviceDetails.huid = [detailDict objectForKey:@"huid"];
-//            self.deviceDetails.hw_asset_number = [detailDict objectForKey:@"hw_asset_number"];
-//            self.deviceDetails.hw_field_value = [detailDict objectForKey:@"hw_field_value"];
-//            self.deviceDetails.hw_subcategory = [detailDict objectForKey:@"hw_subcategory"];
-//        }
-//    }
-//    
-//    return nil;
-//}
+
+- (id)parseJsonObjectFromResponse:(id)response {
+    [super parseJsonObjectFromResponse:response];
+    
+    if (response == [NSNull null]) {
+        return nil;
+    }
+    
+    if (nil != self.errormessage) {
+        return nil;
+    }
+    
+   NSDictionary *userData = [response objectForKey:kResponseData];
+    
+    if (nil != userData) {
+        if ([userData respondsToSelector:@selector(objectForKey:)]) {
+            [_details parseDeviceDetailsFromResponse:userData];
+        }
+    }
+    return nil;
+}
 
 @end

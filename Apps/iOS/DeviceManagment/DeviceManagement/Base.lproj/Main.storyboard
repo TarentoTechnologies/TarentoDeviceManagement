@@ -270,6 +270,11 @@
                                     <action selector="assignButtonClicked:" destination="VDh-u5-f5G" eventType="touchUpInside" id="WYI-6j-cbG"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Ua-by-F3g">
+                                <rect key="frame" x="20" y="383" width="280" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.7254902124" green="0.75294125079999996" blue="0.76470595600000002" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
@@ -306,6 +311,7 @@
                         <outlet property="deviceNumberLabel" destination="jqd-mI-wfp" id="tDz-Ya-yNz"/>
                         <outlet property="ownerNameLabel" destination="Hkb-bX-LGT" id="mRG-e3-stg"/>
                         <outlet property="ownerPinTextField" destination="p6I-4g-mBO" id="zQQ-bm-lrq"/>
+                        <outlet property="typeTextField" destination="1Ua-by-F3g" id="hcs-oc-aBn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LG4-fD-vng" userLabel="First Responder" sceneMemberID="firstResponder"/>
