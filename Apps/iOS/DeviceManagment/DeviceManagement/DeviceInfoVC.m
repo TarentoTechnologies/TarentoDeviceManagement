@@ -13,6 +13,9 @@
 #import "GetDeviceInfo.h"
 #import  "DeviceInfo.h"
 #import "DataModel.h"
+#import "UINavigationBar+Custom.h"
+
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 @interface DeviceInfoVC ()
 
 @property (strong, nonatomic) NSMutableArray *textFieldsArray;
@@ -33,6 +36,7 @@
 @synthesize activeTextField;
 @synthesize textFieldIndex;
 @synthesize textFieldsArray;
+@synthesize barTintColor;
 
 
 #define NUMBER_OF_TEXTFILEDS 3
@@ -40,9 +44,12 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+   
     if (self) {
         // Custom initialization
-    }
+        barTintColor = [UIColor grayColor];
+        self.navigationItem.titleView.backgroundColor = barTintColor;
+}
     return self;
 }
 
@@ -50,18 +57,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+ 
     [self initializeView];
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+//    [[UIBarButtonItem appearance]setTintColor:[UIColor redColor]];
+       [self.navigationController.navigationBar setDefaultBackGroundAndBarTintColor];
+        [super viewWillAppear:animated];
 }
 
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if ([self isdeviceDetailsPresent]) {
+       if ([self isdeviceDetailsPresent]) {
         [self showDeviceDetailsScreen];
     }
 }
@@ -69,7 +79,7 @@
 
 - (void)initializeView {
     UIEdgeInsets insets = UIEdgeInsetsMake(4, 4, 4, 4);
-    
+
     [self.submitButton setBackgroundImage:[[UIImage imageNamed:@"orange_scalable.png"] resizableImageWithCapInsets:insets] forState:UIControlStateNormal];
     
     self.deviceNumberTextField.placeholder = [NSString localizedValueForKey:@"device_Number"];
@@ -100,10 +110,10 @@
         [[AppUtility sharedInstance] showAlertWithTitle:@"" message:[NSString localizedValueForKey:@"device_Number_Char_Validation_Error"]];
         success = NO;
     }
-    else if (deviceTypeTextField.text.length < MIN_DEVICE_TYPE_LENGTH) {
-        [[AppUtility sharedInstance] showAlertWithTitle:@"" message:[NSString localizedValueForKey:@"device_Type_Empty_Error"]];
-        success = NO;
-    }
+//    else if (deviceTypeTextField.text.length < MIN_DEVICE_TYPE_LENGTH) {
+//        [[AppUtility sharedInstance] showAlertWithTitle:@"" message:[NSString localizedValueForKey:@"device_Type_Empty_Error"]];
+//        success = NO;
+//    }
     
     return success;
 }
@@ -113,6 +123,7 @@
     BOOL success = [self validateData];
     
     if (success) {
+        
         [self callDeviceDetailsApi];
     }
 }
@@ -126,24 +137,27 @@
 - (void)callDeviceDetailsApi {
     __block GetDeviceInfo *deviceInfoApi = [GetDeviceInfo new];
     
-    deviceInfoApi.appId = @1;
-    deviceInfoApi.apiToken =@"111111";
-    deviceInfoApi.deviceId =deviceNumberTextField.text;
-    deviceInfoApi.type = deviceTypeTextField.text;
-    
-    [[WebService sharedInstance] postRequest:deviceInfoApi andCallback:^(APIBase *apiBase, id JSON,NSError *error) {
+   
+        deviceInfoApi.appId = @1;
+        deviceInfoApi.apiToken =@"111111";
+        deviceInfoApi.deviceId =deviceNumberTextField.text;
+       deviceInfoApi.type = [self deviceType];
         
-        deviceInfoApi = (GetDeviceInfo *)apiBase;
-        
-        if (nil == error && nil == deviceInfoApi.errormessage) {
+        [[WebService sharedInstance] postRequest:deviceInfoApi andCallback:^(APIBase *apiBase, id JSON,NSError *error) {
             
-            [[DataModel sharedInstance] storeDeviceDetils:deviceInfoApi.deviceDetails];
-            [self showDeviceDetailsScreen];
-        }
-        else {
-            [deviceInfoApi displayError];
-        }
-    }];
+            deviceInfoApi = (GetDeviceInfo *)apiBase;
+            
+            if (nil == error && nil == deviceInfoApi.errormessage) {
+                
+                [[DataModel sharedInstance] storeDeviceDetils:deviceInfoApi.deviceDetails];
+                [self showDeviceDetailsScreen];
+            }
+            else {
+                [deviceInfoApi displayError];
+            }
+        }];  
+
+    
 }
 
 
@@ -174,41 +188,41 @@
 #pragma mark - text field delegates...
 
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-	BOOL edit = YES;
-	return edit;
-}
-
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    [[AppUtility sharedInstance] disableHighLightOfTextField:activeTextField];
-    textFieldIndex = [textField tag];
-    activeTextField = textField;
-    [[AppUtility sharedInstance] highLightTextField:activeTextField withColor:CH_SKYBLUE_COLOR];
-    [self enableToolBarButtons];
-    
-    if (IS_IPHONE4) {
-        [UIView animateWithDuration:0.3 animations:^{
-            CGRect frame = self.view.frame;
-            frame.origin.y = - (50 + (textFieldIndex * 35)); // write comment..
-            self.view.frame = frame;
-        }];
-    }
-}
-
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if(textFieldIndex < (NUMBER_OF_TEXTFILEDS - 1)) {
-		textFieldIndex++;
-		UITextField *textField = (UITextField *)[textFieldsArray objectAtIndex:textFieldIndex];
-		[textField becomeFirstResponder];
-	}
-    else {
-       [self showNormalView];
-    }
-    
-	return YES;
-}
+//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+//	BOOL edit = YES;
+//	return edit;
+//}
+//
+//
+//- (void)textFieldDidBeginEditing:(UITextField *)textField {
+//    [[AppUtility sharedInstance] disableHighLightOfTextField:activeTextField];
+//    textFieldIndex = [textField tag];
+//    activeTextField = textField;
+//    [[AppUtility sharedInstance] highLightTextField:activeTextField withColor:CH_SKYBLUE_COLOR];
+//    [self enableToolBarButtons];
+//    
+//    if (IS_IPHONE4) {
+//        [UIView animateWithDuration:0.3 animations:^{
+//            CGRect frame = self.view.frame;
+//            frame.origin.y = - (50 + (textFieldIndex * 35)); // write comment..
+//            self.view.frame = frame;
+//        }];
+//    }
+//}
+//
+//
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+//    if(textFieldIndex < (NUMBER_OF_TEXTFILEDS - 1)) {
+//		textFieldIndex++;
+//		UITextField *textField = (UITextField *)[textFieldsArray objectAtIndex:textFieldIndex];
+//		[textField becomeFirstResponder];
+//	}
+//    else {
+//       [self showNormalView];
+//    }
+//    
+//	return YES;
+//}
 
 
 #pragma mark -
@@ -271,5 +285,33 @@
     ;
 }
 
+-(NSString *)checkingPhoneType {
 
+if (!IS_IPAD) {
+   
+    NSString *string = @"iPhone found";
+    return string;
+    //NSLog(@"iPhone found");
+} else {
+    
+    NSString *iPadString =@"iPad found";
+    return iPadString;
+     //NSLog(@"iPad found");
+
+}
+    return nil;
+}
+
+- (NSString *)deviceType {
+    NSString *device = nil;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        device = @"iPhone";
+    } else if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        device = @"iPad";
+    } else {
+        device = @"Unknown";
+    }
+    
+    return device;
+}
 @end

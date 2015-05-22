@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *deviceNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ownerNameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *reassignButton;
+@property (weak, nonatomic) IBOutlet UILabel *osVersionLabel;
 
 - (IBAction)reassignButtonClicked:(id)sender;
 

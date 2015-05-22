@@ -10,6 +10,7 @@
 #import "DeviceAssignDetailsVC.h"
 #import "DeviceInfo.h"
 #import "DataModel.h"
+#import "UINavigationBar+Custom.h"
 
 @interface DeviceOwnerDetailsVC ()
 
@@ -22,13 +23,14 @@
 @synthesize deviceNumberLabel;
 @synthesize deviceNameLabel;
 @synthesize ownerNameLabel;
+@synthesize osVersionLabel;
 @synthesize reassignButton;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    
+      //barTintColor = [UIColor redColor];
     if (self) {
         // Custom initialization
     }
@@ -40,7 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+    [[UIBarButtonItem appearance]setTintColor:[UIColor redColor]];
     [self initializeView];
     [self showDeviceDetails];
 }
@@ -61,12 +63,16 @@
     
     DeviceInfo *info = [[DataModel sharedInstance] deviceDetails];
     self.deviceNameLabel.text = info.name;
-    self.deviceNumberLabel.text = info.identifier;
+    self.deviceNumberLabel.text = info.deviceId;
     self.ownerNameLabel.text = info.firstName;
+    self.osVersionLabel.text = info.os;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+   // [self.navigationController.navigationBar setDefaultBackGroundAndBarTintColor];
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+    
     [self hideBackButton];
 }
 

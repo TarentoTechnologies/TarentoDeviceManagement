@@ -16,6 +16,7 @@
 #define kStatusCode @"statusCode"
 #define kStatusMessage @"status"
 #define kResponse @"response"
+#define kErrorMessage @"errorMessage"
 //#define kResponseData @"responseData"
 
 #define kDeviceDetailsApiUrl @"http://172.17.18.15:9000/hardware_api/hardwareiphone/format/json/"
@@ -64,6 +65,8 @@ static NSString *const kOwnerName = @"first_name";
 //    "user_id" = 1;
 //};
 
+
+#define BLACK_COLOR [UIColor blackColor]
 #endif
 
 

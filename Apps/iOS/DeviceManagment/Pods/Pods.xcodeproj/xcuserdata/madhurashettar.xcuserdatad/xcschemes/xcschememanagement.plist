@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-IQKeyboardManager.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-MagicalRecord.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2C89E52B905850A47C5C2ECF</key>
+		<key>2CCA9587126A2B8A6C6A9607</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>93E4FA3903A3C3B4223755EF</key>
+		<key>5FDF76A1CB8DCEEEC50CA24D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9C3542CACB2718D4E29626F0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BE5C2691F16A381054B6A4B3</key>
+		<key>848315D275257F7C6682010D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

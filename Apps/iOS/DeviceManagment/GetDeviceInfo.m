@@ -71,5 +71,14 @@
     return nil;
 }
 
+-(BOOL)isPhone {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone|| UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return YES;
+    }
+    else {
+        return NO;
+    }
+    
+}
 
 @end

@@ -54,7 +54,7 @@
         self.message = [ParserUtility JSONObjectValue:response forKey:kStatusMessage];
         
         if (API_SUCESS != [statusCode integerValue]) {
-         self.errormessage = [ParserUtility JSONObjectValue:response forKey:kStatusMessage];
+         self.errormessage = [ParserUtility JSONObjectValue:response forKey:kErrorMessage];
         }
     }
     

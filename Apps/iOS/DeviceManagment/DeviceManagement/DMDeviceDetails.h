@@ -23,8 +23,10 @@
 @property (strong, nonatomic) NSString *updatedAt;
 @property (strong, nonatomic) NSString *userId;
 @property (strong, nonatomic) NSString *firstName;
+@property(strong , nonatomic) NSNumber *statusCode;
 
 - (void)parseDeviceDetailsFromResponse:(NSDictionary *)userData;
+
 
 @end
 

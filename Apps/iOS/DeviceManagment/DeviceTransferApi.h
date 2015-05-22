@@ -16,14 +16,13 @@
 @property(strong, nonatomic) NSString *apiToken;
 @property(strong, nonatomic) NSString *oldOwnerPin;
 @property(strong, nonatomic) NSString *oldOwnerIdentifier;
-@property(strong, nonatomic) NSString *ownerPin;
-@property(strong, nonatomic) NSString *ownerIdentifier;
+@property(strong, nonatomic) NSString *newownerPin;
+@property(strong, nonatomic) NSString *newownerIdentifier;
 @property(strong, nonatomic) NSString *imei;
 @property(strong, nonatomic) NSString *deviceId;
 @property(strong, nonatomic) NSString *type;
+@property(strong, nonatomic) NSString *empId;
 @property(strong, nonatomic) DMDeviceDetails *details;
-
-
 
 @end
 

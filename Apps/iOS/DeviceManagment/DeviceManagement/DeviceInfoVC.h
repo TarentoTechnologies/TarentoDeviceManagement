@@ -23,6 +23,8 @@
 @property (weak, nonatomic) UITextField *activeTextField;
 @property (nonatomic) NSInteger textFieldIndex;
 
+@property(nonatomic, retain) UIColor *barTintColor;
+
 
 - (IBAction)submitButtonClicked:(id)sender;
 

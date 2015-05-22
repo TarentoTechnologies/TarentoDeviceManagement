@@ -10,9 +10,12 @@
 
 @implementation DMDeviceDetails
 
+@synthesize statusCode;
+
+
 - (void)parseDeviceDetailsFromResponse:(NSDictionary *)userData {
     
-    self.imei= [ParserUtility JSONObjectValue:userData forKey:kImei];
+       self.imei= [ParserUtility JSONObjectValue:userData forKey:kImei];
     self.accessoryInfo =[ParserUtility JSONObjectValue:userData forKey:kAccessoryInfo];
     self.createdAt = [ParserUtility JSONObjectValue:userData forKey:kCreatedAt];
     self.deviceId = [ParserUtility JSONObjectValue:userData forKey:kDeviceId];

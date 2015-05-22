@@ -7,14 +7,42 @@
 //
 
 #import "DeviceManagementAppDelegate.h"
+#import "IQKeyboardManager.h"
+
 
 @implementation DeviceManagementAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    return YES;
+  
+    // Let the device know we want to receive push notifications
+//    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+//     (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+        [self initializeIQKeyboardManager];
+  
+        [self registerRemoteNotifications];
+        return YES;
+}
+
+
+- (void)initializeIQKeyboardManager {
+    
+    //Enabling keyboard manager(Use this line to enable managing distance between keyboard & textField/textView).
+    [[IQKeyboardManager sharedManager] setEnable:YES];
+    
+    //(Optional)Enable autoToolbar behaviour. If It is set to NO. You have to manually create UIToolbar for keyboard. Default is NO.
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
+    
+    [[IQKeyboardManager sharedManager] setKeyboardDistanceFromTextField:10];
+    
+    [[IQKeyboardManager sharedManager] setToolbarManageBehaviour:IQAutoToolbarBySubviews];
+    
+    //(Optional)Resign textField if touched outside of UITextField/UITextView. Default is NO.
+    //[[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
+    
+    //(Optional)Show TextField placeholder texts on autoToolbar. Default is NO.
+    [[IQKeyboardManager sharedManager] setShouldShowTextFieldPlaceholder:YES];
 }
 
 
@@ -49,5 +77,48 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+#ifdef __IPHONE_8_0
+// Remote Notification Registration on iOS 8 version
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+    //register to receive notifications
+    [application registerForRemoteNotifications];
+}
+#endif
 
+- (void)registerRemoteNotifications {
+    // Registers for remote notifications and clears notifications from notification bar.
+    
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert) categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    }
+    else {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes: UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert];
+    }
+    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+}
+
+
+//- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
+//    [application registerForRemoteNotifications];
+//}
+
+
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+{
+    NSLog(@"My token is: %@", deviceToken);
+    NSString *pushToken = [[[[deviceToken description]
+                               stringByReplacingOccurrencesOfString:@"<"withString:@""]
+                              stringByReplacingOccurrencesOfString:@">" withString:@""]
+                             stringByReplacingOccurrencesOfString: @" " withString: @""];
+    NSLog(@"pushToken = %@",pushToken);
+    
+}
+
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
+{
+    NSLog(@"Failed to get token, error: %@", error);
+}
 @end

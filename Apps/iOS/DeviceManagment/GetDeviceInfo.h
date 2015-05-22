@@ -18,6 +18,8 @@
 @property (strong, nonatomic) NSString *type;
 @property (strong, nonatomic) DMDeviceDetails *deviceDetails;
 
+- (BOOL)isPhone;
+
 @end
 
 //{
