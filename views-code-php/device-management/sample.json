@@ -1,0 +1,64 @@
+{
+  "appId":1,
+  "apiToken":"111111",
+  "deviceId":"shhhdfsa",
+  "empid":"111",
+  "name":"test",
+  "make":"tttt",
+  "type":"xxxx",
+  "os":"xxx",
+  "IMEI":"xxx",
+  "accessoryinfo":"xqwww",
+  "purpose":"",
+  "comments":"wqweqwewqe"
+}
+
+
+getdeviceinfo thru IMEI
+
+{
+"appId":1,
+"apiToken":"111111",
+"device_id":"2431442",
+"type":"mobile"
+}
+
+
+getassigned device list
+
+{
+ "appId":1,
+"apiToken":"111111",
+"employee_id":"111"
+}
+
+
+device transfer api request
+{
+
+"appId":1,
+"apiToken":"111111",
+ "oldOwnerPin":"111",
+"OldOwnerIdentifier":"111",
+"newOwnerPin":"111",
+"newOwnerIdentifier":"114",
+"IMEI":"2431442"
+
+}
+
+device tracker
+{
+"appId":1,
+"apiToken":"111111",
+"device_id":"2431442",
+"currentLocation":"test",
+"ip":"xxx.xxx.xxx.xxx",
+"wifi":"1334444",
+"osVersion":"5",
+"pin":"111"
+}
+
+
+
+
+
