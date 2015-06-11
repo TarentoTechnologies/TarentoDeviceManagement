@@ -3,7 +3,7 @@ namespace App\Models;
 use App\lib\DB; 
 class User extends DB
 {
-	/**
+  /**
      * getDeviceInfoFromIMEI
      *
      * it will get the device informtion with device holder
@@ -48,8 +48,8 @@ class User extends DB
      */
     public function changeUserPin($userInfo)
     {
-    	try
-    	{
+      try
+      {
               $sql = "CALL change_pin(?,?,?)";
               $response=parent::query($sql,$userInfo);
               error_log(print_r($response,true));
@@ -62,11 +62,11 @@ class User extends DB
             
             return  ($responseStatus==1) ?  array(API_RESPONSE_STATUS_CODE=>200,API_RESPONSE_STATUS_MESSAGE=>"Success",API_RESPONSE=>array()) :  array(API_RESPONSE_STATUS_CODE=>500,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Your old pin is invalid"); 
 
-    	}
-    	catch(Exception $e)
-    	{
+      }
+      catch(Exception $e)
+      {
             return array(API_RESPONSE_STATUS_CODE=>500,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Failure");
-    	}
+      }
     }
     /**
      * resetUserPin
@@ -78,9 +78,9 @@ class User extends DB
      */
     public function resetUserPin($userInfo)
     {
-    	try
-    	{
-    		  error_log(print_r($userInfo,true));
+      try
+      {
+          error_log(print_r($userInfo,true));
               $sql ="CALL reset_user_pin(?,?)";
               //$sql = "CALL device_track(?,?,?,?,?,?)";
               $response=parent::query($sql,$userInfo);
@@ -98,10 +98,48 @@ class User extends DB
               return ($responseStatus==1) ?  array(API_RESPONSE_STATUS_CODE=>200,API_RESPONSE_STATUS_MESSAGE=>"Sucess") : array(API_RESPONSE_STATUS_CODE=>404,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Non-Existing-user");
             
 
-    	}
-    	catch(Exception $e)
-    	{
+      }
+      catch(Exception $e)
+      {
             return array(API_RESPONSE_STATUS_CODE=>500,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Failure");
-    	}
+      }
     }
+
+    /**
+     * checkUserRole
+     *
+     * 
+     *
+     * @param (array) ($userInfo) $userInfo 
+     * @return (type) (name)
+     */
+    public function checkUserRole($userInfo)
+    {
+      try
+      {
+          error_log(print_r($userInfo,true));              
+          $sql="select admin_id from admin where admin_id=?";              
+          //$sql = "CALL device_track(?,?,?,?,?,?)";
+          $response=parent::query($sql,$userInfo);
+          
+          error_log("======================");
+          error_log(print_r($response));
+          error_log("======================");
+          $responseStatus=0;
+          while($result=$response->fetchObject())
+           {
+              /*isset($result->{1}) ? $responseStatus=$result->{1} : $responseStatus=$result->{0};*/
+              $responseStatus=1;
+           }
+
+        
+          return ($responseStatus==1) ?  array(API_RESPONSE_STATUS_CODE=>200,API_RESPONSE_STATUS_MESSAGE=>"Sucess") : array(API_RESPONSE_STATUS_CODE=>404,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Non-Existing-user");
+        
+
+      }
+      catch(Exception $e)
+      {
+            return array(API_RESPONSE_STATUS_CODE=>500,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Failure");
+      }
+    }    
 }

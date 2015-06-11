@@ -3,19 +3,19 @@ namespace App\Models;
 use App\lib\DB; 
 class Admin extends DB
 {
-	/**
-	 * registerDevices
-	 *
-	 * It is doing register new devices
-	 *
-	 * @param (type) (name) about this param
-	 * @return (type) (name)
-	 */
+    /**
+     * registerDevices
+     *
+     * It is doing register new devices
+     *
+     * @param (type) (name) about this param
+     * @return (type) (name)
+     */
     public function registerDevices($deviceDetails)
     {   
         try
-    	{
-    	$sql = "CALL addDeviceDetails(?,?,?,?,?,?,?,?,@addDeviceResponse,?,?,?,?,?,?)";
+        {
+        $sql = "CALL addDeviceDetails(?,?,?,?,?,?,?,?,@addDeviceResponse,?,?,?,?,?,?)";
         parent::query($sql,$deviceDetails);
         $sql = "select @addDeviceResponse as response";
         $response=parent::query($sql);
@@ -80,6 +80,68 @@ class Admin extends DB
      
              }
     }
+
+
+
+
+  /**
+     * getDeviceDetailsUser
+     *
+     * get device information for specific user
+     *
+     * @param (type) (name) about this param
+     * @return (type) (name)
+     */
+    public function getDeviceDetailsUser($userInfo)
+    {
+         $device_types_array=array();   
+         $device_types_array=Admin::typeList();
+
+             try
+             {
+                $deviceInformation=array();
+                $sql="select distinct di.id, di.device_id, di.make, di.name, di.type,di.type_id, di.os, di.version, di.IMEI, di.accessoryinfo, di.created_at, di.updated_at,u.id as user_id,u.first_name,u.last_name,u.unique_id as employee_id,dhi.device_status from deviceinfo di, users u, device_holder_info dhi where dhi.device_id=di.id and (dhi.device_status='Available' or dhi.device_status='Assigned') and dhi.user_id=u.id and u.unique_id=? order by di.id asc";
+                $response=parent::query($sql,$userInfo);                
+                 while($result=$response->fetchObject())
+                 {
+
+
+                    $resultVal=(array)$result;
+                    $typeval=$resultVal["type_id"];
+                    $resultVal["type_id"]=$device_types_array[$typeval];
+                    array_push($deviceInformation,(array)$resultVal);
+
+
+
+
+                     //array_push($deviceInformation,(array)$result);
+                 }
+
+                $userInformation=array();
+                $sql="select u.id as user_id,u.first_name,u.last_name,u.unique_id as employee_id from users u where u.unique_id=?";
+                $response=parent::query($sql,$userInfo);
+                 while($result=$response->fetchObject())
+                 {
+                    $resultVal=(array)$result;                    
+                    array_push($userInformation,(array)$resultVal);                    
+                 }
+                 $resultInformation=array();
+                 array_push($resultInformation,(array)$deviceInformation);                    
+                 array_push($resultInformation,(array)$userInformation);                    
+
+
+
+                 return array(API_RESPONSE_STATUS_CODE=>200,API_RESPONSE_STATUS_MESSAGE=>"Success",API_RESPONSE=>$resultInformation);
+            
+
+             }
+             catch(Exception $e)
+             {
+                  return array(API_RESPONSE_STATUS_CODE=>500,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Failure");
+     
+             }
+    }
+
 
 
 
