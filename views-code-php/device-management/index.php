@@ -32,6 +32,16 @@ Flight::route(LIST_DEVICE_DETAILS, function() use (&$app)
 
 });
 
+//list-device-details-user
+Flight::route(LIST_DEVICE_DETAILS_USER, function() use (&$app)
+{
+   $adminObj=$app->resolve("admin");
+   $adminObj->listDeviceDetailsUser();
+
+});
+
+
+
 //list-device-details
 Flight::route(LIST_DEVICE_TYPES, function() use (&$app)
 {
@@ -62,6 +72,17 @@ Flight::route(GET_DEVICE_INFORMATION_WITH_TRACK, function() use (&$app)
    $adminObj->getdeviceInformationTrack();
 
 });
+
+
+//check-user-role
+Flight::route(CHECK_USER_ROLE, function() use (&$app)
+{
+   $adminObj=$app->resolve("user");
+   $adminObj->userRole();
+
+});
+
+
 
 Flight::route(GET_ASSIGNED_DEVICE_LIST, function() use (&$app)
 {
@@ -117,7 +138,7 @@ Flight::route(GET_TRACKING_INFORMATION, function() use (&$app)
 Flight::before('start', function(&$params, &$output)
 {
 
-	 $deviceDetails=json_decode(Flight::request()->getBody(),true);
+   $deviceDetails=json_decode(Flight::request()->getBody(),true);
   // error_log(print_r($deviceDetails,true));
 
   error_log("==============================================");
@@ -131,9 +152,9 @@ Flight::before('start', function(&$params, &$output)
          exit();
       }
      $is_valid = GUMP::is_valid($deviceDetails, array(
-    		'apiToken' => 'required',
-    		'appId' => 'required',
-    		 ));
+        'apiToken' => 'required',
+        'appId' => 'required',
+         ));
        if($is_valid !==true ) 
           {
             error_log("test=====================================");
@@ -142,12 +163,12 @@ Flight::before('start', function(&$params, &$output)
           }
           else
           {
-          	   $response=Utility::apiAccessCheck($deviceDetails["appId"],$deviceDetails["apiToken"]);
-          	   if($response!=1)
-          	   {
+               $response=Utility::apiAccessCheck($deviceDetails["appId"],$deviceDetails["apiToken"]);
+               if($response!=1)
+               {
                   echo Flight::json(array(API_RESPONSE_STATUS_CODE=>401,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Unauthorized",API_RESPONSE=>""));
                   exit();
-          	   }
+               }
           }
           
       }

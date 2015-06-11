@@ -5,6 +5,8 @@ define("RESET_USER_PIN","/reset-user-pin");
 define("DEVICE_TRANSFER","/device-transfer");
 define("ADD_DEVICE_INFORMATION","/add-device-info");
 define("LIST_DEVICE_DETAILS","/list-device-details");
+define("LIST_DEVICE_DETAILS_USER","/list-device-details-user");
+define("CHECK_USER_ROLE","/check-user-role");
 define("LIST_DEVICE_TYPES","/list-device-types");
 define("GET_DEVICE_INFORMATION","/get-device-info");
 define("EDIT_DEVICE_INFORMATION","/edit-device-info");

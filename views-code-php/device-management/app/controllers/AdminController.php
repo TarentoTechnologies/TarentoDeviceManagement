@@ -11,18 +11,18 @@
  class AdminController 
  {
 
- 	  protected $admin;
- 	 /**
- 	  * Function name
- 	  *
- 	  * what the function does
- 	  *
- 	  * @param (type) (name) about this param
- 	  * @return (type) (name)
- 	  */
+    protected $admin;
+   /**
+    * Function name
+    *
+    * what the function does
+    *
+    * @param (type) (name) about this param
+    * @return (type) (name)
+    */
      public function __construct($admin)
      {
-     	 $this->admin=$admin;
+       $this->admin=$admin;
          //$this->dbObject=$databaseInstance;
      }
      
@@ -49,18 +49,18 @@
      public function addDeviceDetails()
      {
          try 
-     	 {
+       {
            $deviceInformationArray=array();
            $deviceDetails=json_decode(Flight::request()->getBody(),true);
            $is_valid = GUMP::is_valid($deviceDetails, array(
-    		'deviceId' => 'required|alpha_numeric',
-    		'make' => 'required',
-    		'name' => 'required',
-    		'type' => 'required',
-    		'os' => 'required',
-    		'IMEI' => 'required',
-    		'accessoryinfo'=>'required',
-    		'employee_id'=>'required',
+        'deviceId' => 'required|alpha_numeric',
+        'make' => 'required',
+        'name' => 'required',
+        'type' => 'required',
+        'os' => 'required',
+        'IMEI' => 'required',
+        'accessoryinfo'=>'required',
+        'employee_id'=>'required',
         'version'=>'required',
         'type_id'=>'required'
              ));
@@ -90,15 +90,15 @@
            }
            else 
            {
-           	echo Flight::json(array(API_RESPONSE_STATUS_CODE=>400,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Bad Request","response"=>$is_valid));
+            echo Flight::json(array(API_RESPONSE_STATUS_CODE=>400,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Bad Request","response"=>$is_valid));
            }
 
-     	  } 
-     	  catch (Exception $e) 
-     	  {
-     	    	// echo $e->getMessage();
-     	  } 
-     	   
+        } 
+        catch (Exception $e) 
+        {
+            // echo $e->getMessage();
+        } 
+         
       }
 
       
@@ -115,6 +115,45 @@
               $response=$this->admin->getDeviceDetails();
               Flight::json($response);
      }
+
+
+
+      
+     /**
+      * listDeviceDetailsUser
+      *
+      * get all  device lists
+      *
+      * @param (type) (name) about this param
+      * @return (type) (name)
+      */
+     public function listDeviceDetailsUser()
+     {
+
+                $userInfo=array();
+                $userDetails=json_decode(Flight::request()->getBody(),true);
+                error_log(print_r($userDetails,true));
+                $is_valid = GUMP::is_valid($userDetails, array(
+                    'user_id' =>'required'                    
+                ));
+              if($is_valid === true) 
+              {
+                 $userInfo[]=$userDetails["user_id"];
+                 //$userInfo[]=$userDetails["type"];
+                 $response=$this->admin->getDeviceDetailsUser($userInfo);
+                 Flight::json($response);
+               }
+               else 
+               {
+                  echo Flight::json(array(API_RESPONSE_STATUS_CODE=>400,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Bad Request",API_RESPONSE=>$is_valid));
+               }
+
+
+              /*$response=$this->admin->getDeviceDetailsUser();
+              Flight::json($response);*/
+     }
+
+
 
 
     /**

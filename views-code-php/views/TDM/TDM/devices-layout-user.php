@@ -20,7 +20,7 @@
                         <div class="col-xs-12">
                             <div class="panel">
                                 <header class="panel-heading">
-                                   Devices
+                                   Assigned Devices
 
                                 </header>
                                 <!-- <div class="box-header"> -->
@@ -56,6 +56,11 @@
                                     ?>
                                     >
 
+                                    <input type="hidden" id="usertext" name="usertext" value=
+                                    <?php
+                                        print_r($user);
+                                    ?>
+                                    >
                                     
                                     <table class="table table-hover">
                                         <tr>
@@ -67,7 +72,7 @@
                                             <th>OS</th>
                                             <th>Version</th>
                                             <!-- <th>Status</th> -->
-                                            <th>Owner</th>
+                                            <!-- <th>Owner</th> -->
                                             <th>Last verified</th>
                                         </tr>
                                         <tbody id="tbl_devices" >
@@ -94,12 +99,27 @@
            
 function listdevicedetails()
 {
+
+            var usertext=document.getElementById("usertext").value
+
             var stuff = new Object();
-            stuff = {'appId':'1','apiToken':'111111'};
+
+//            stuff = {'appId':'1','apiToken':'111111','user_id':''+user_id+''};
+
+            stuff = {
+
+                    "appId":1,
+
+                    "apiToken":"111111",
+
+                    "user_id":""+usertext+""
+
+                    };
+              
             
 
              $.ajax({
-            url: 'device-management/list-device-details',
+            url: 'device-management/list-device-details-user',
             type: 'POST',
            
             data: JSON.stringify(stuff),
@@ -108,6 +128,7 @@ function listdevicedetails()
             contentType: "application/json; charset=utf-8",
             success: function(result) {
             var getres=result["responseData"];
+            getres=getres[0];
             var typetext=document.getElementById("typetext").value
             var versiontext=document.getElementById("versiontext").value
             var statustext=document.getElementById("statustext").value
@@ -131,7 +152,8 @@ function listdevicedetails()
                  if (chk==1) {
                     if (getres[i].device_status==statustext || statustext=="All") {
                         var date = getres[i].created_at;                 
-                        document.getElementById("tbl_devices").innerHTML += "<tr><td>"+(getres[i].id)+"</td><td><form id=myform"+(getres[i].id)+" action=device method=POST><input type=hidden value="+(getres[i].id)+" id=hidautoid name=hidautoid></input><input type=hidden value="+(getres[i].device_id)+" id=hidid name=hidid></input><input type=hidden value="+(getres[i].type)+" id=hid-type name=hid-type></input><a id=dev_id name=dev_id href=# onclick=document.getElementById('myform"+(getres[i].id)+"').submit();>"+(getres[i].device_id)+"</a></form> </td><td>"+(getres[i].make)+"</td><td>"+(getres[i].type_id)+"</td><td>"+(getres[i].type)+"</td><td>"+(getres[i].os)+"</td><td>"+(getres[i].version)+"</td><td>"+(getres[i].first_name)+"</td><td>"+(date)+"</td></tr>";
+                        /*<td>"+(getres[i].first_name)+"</td>*/
+                        document.getElementById("tbl_devices").innerHTML += "<tr><td>"+(getres[i].id)+"</td><td>"+(getres[i].device_id)+" </td><td>"+(getres[i].make)+"</td><td>"+(getres[i].type_id)+"</td><td>"+(getres[i].type)+"</td><td>"+(getres[i].os)+"</td><td>"+(getres[i].version)+"</td><td>"+(date)+"</td></tr>";
                     }
                     
                  }

@@ -1,0 +1,166 @@
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    border: 0 none;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: outside none none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote::before, blockquote::after, q::before, q::after {
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+body {
+    /*background: url("/public/img/images2.jpeg") repeat scroll 0 0 / cover rgba(0, 0, 0, 0);*/
+    color: white;
+    font-family: "Roboto";
+    font-size: 16px;
+    padding-top: 100px;
+    
+}
+.flat-form {
+    background: none repeat scroll 0 0 rgb(95, 182, 68);
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.5);
+    font-family: "Roboto";
+    height: 340px;
+    margin: 25px auto;
+    position: relative;
+    width: 390px;
+}
+.tabs {
+    background: none repeat scroll 0 0 #28862c;
+    display: block;
+    height: 40px;
+    list-style-type: none;
+    margin: 0 0 20px;
+    padding: 0;
+    position: relative;
+    width: 100%;
+}
+.tabs li {
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+.tabs a {
+    background: none repeat scroll 0 0 #28862c;
+    color: white;
+    display: block;
+    float: left;
+    font-size: 16px;
+    padding: 12px 22px;
+    text-decoration: none;
+}
+.tabs li:last-child a {
+    border-right: medium none;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+    width: 174px;
+}
+.tabs a.active {
+    background: none repeat scroll 0 0 #5fb644;
+    border-right: medium none;
+    transition: all 0.5s linear 0s;
+}
+.form-action {
+    padding: 0 20px;
+    position: relative;
+}
+.form-action h1 {
+    font-size: 23px;
+    padding-bottom: 10px;
+}
+.form-action p {
+    font-size: 14px;
+    line-height: 25px;
+    padding-bottom: 10px;
+}
+form {
+    padding-right: 20px !important;
+}
+form input[type="text"], form input[type="password"], form input[type="submit"] {
+    font-family: "Roboto";
+}
+form input[type="text"], form input[type="password"] {
+    background: none repeat scroll 0 0 #fff;
+    border: medium none;
+    color: black;
+    height: 40px;
+    margin-bottom: 10px;
+    outline: medium none;
+    padding-left: 15px;
+    width: 96%;
+}
+.dark-box {
+    background: none repeat scroll 0 0 #5e0400;
+    box-shadow: 1px 3px 3px #3d0100 inset;
+    height: 40px;
+    width: 50px;
+}
+.form-action .dark-box.bottom {
+    bottom: -24px;
+    position: absolute;
+    right: 0;
+}
+.tabs + .dark-box.top {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.show {
+    display: block;
+}
+.hide {
+    display: none;
+}
+.button {
+    background: none repeat scroll 0 0 #1e5f2d;
+    border: medium none;
+    border-radius: 5px;
+    color: #ffffff;
+    display: block;
+    height: 40px;
+    margin-bottom: 10px;
+    text-align: center;
+    transition: all 0.15s linear 0s;
+    width: 80px;
+}
+.button:hover {
+    background: none repeat scroll 0 0 #127529;
+}
+.button:active {
+    background: none repeat scroll 0 0 #136899;
+}
+:-moz-placeholder {
+    color: #5fb644;
+}
+*::-moz-placeholder {
+    color: #5fb644;
+}
+.error {
+    color: #ff0000;
+}
+@media (min-width: 1100px) {
+.flat-form {
+    background: url("/public/img/focus-web.jpg") no-repeat scroll 0 0 #5fb644;
+    margin: 25px auto;
+    padding-left: 686px;
+}
+}

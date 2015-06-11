@@ -11,14 +11,14 @@
  {
 
     protected $user;
- 	 /**
- 	  * Function name
- 	  *
- 	  * what the function does
- 	  *
- 	  * @param (type) (name) about this param
- 	  * @return (type) (name)
- 	  */
+   /**
+    * Function name
+    *
+    * what the function does
+    *
+    * @param (type) (name) about this param
+    * @return (type) (name)
+    */
      public function __construct($user)
      {
         $this->user=$user;
@@ -113,5 +113,31 @@
            }
      }
 
-
+     /**
+      * userRole
+      *
+      * Find the user role
+      *
+      * @param (type) (name) about this param
+      * @return (type) (name)
+      */
+     public function userRole()
+     {
+          $userInformationArray=array();
+          $userDetails=json_decode(Flight::request()->getBody(),true);
+          //$response=$this->admin->getDeviceInfoFromIMEI();
+          $is_valid = GUMP::is_valid($userDetails, array(
+              'employee_id' => 'required'             
+          ));
+          if($is_valid === true) 
+          {           
+           $userInformationArray[]=$userDetails["employee_id"];
+           $response=$this->user->checkUserRole($userInformationArray);
+            Flight::json($response);
+           }
+           else 
+           {
+            echo Flight::json(array(API_RESPONSE_STATUS_CODE=>400,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Bad Request",API_RESPONSE=>$is_valid));
+           }
+     }
 }

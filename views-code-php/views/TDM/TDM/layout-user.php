@@ -53,7 +53,10 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-user"></i>
-                                <span>Admin <i class="caret"></i></span>
+                                <input type="hidden" id="useridhidden" name="useridhidden" value=<?php print_r($user); ?>>
+                                <span><?php
+                                        print_r($user);
+                                    ?> <i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
                                 <!-- <li class="dropdown-header text-center">Account</li>
@@ -84,8 +87,8 @@
                                         </a>
                                         </li>
 
-                                        <li class="divider"></li> -->
-
+                                        <li class="divider"></li>
+ -->
                                         <li>
                                             <a href="/"><i class="fa fa-ban fa-fw pull-right"></i> Logout</a>
                                         </li>
@@ -103,7 +106,7 @@
                             <!-- Sidebar user panel -->
                             
                             <!-- search form -->
-                         <!--    <form action="#" method="get" class="sidebar-form">
+                            <!-- <form action="#" method="get" class="sidebar-form">
                                 <div class="input-group">
                                     <input type="text" name="q" class="form-control" placeholder="Search..."/>
                                     <span class="input-group-btn">
@@ -112,30 +115,35 @@
                                 </div>
                             </form> -->
                             <ul class="sidebar-menu">
-                                <li>
+                                <!-- <li>
                                     <a href="dash">
                                         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li>
-                                    <a href="devices">
+                                    <a href="devices-user">
                                         <i class="fa fa-gavel"></i> <span>Devices</span>
                                     </a>
                                 </li>
 
-                                <li>
+                                <!-- <li>
                                     <a href="newdevice">
                                         <i class="fa fa-globe"></i> <span>New Device </span>
                                     </a>
-                                </li>
+                                </li> -->
                                <!-- <li>
                                     <a href="resetpin">
                                         <i class="glyphicon glyphicon-lock"></i> <span>Reset PIN </span>
                                     </a>
                                 </li> -->
-                                <li>
+                                 <li>
                                     <a href="changepwd" target="_blank">
                                         <i class="glyphicon glyphicon-lock"></i> <span>Change Password </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="resetpin">
+                                        <i class="glyphicon glyphicon-lock"></i> <span>Reset Pin </span>
                                     </a>
                                 </li>
 
@@ -185,6 +193,69 @@
         <script src="/public/js/Director/app.js" type="text/javascript"></script>
 
     
+
+
+
+            <script type="text/javascript">
+  
+
+$(document).ready(function(){
+    var stuff = new Object();
+    var usertext=document.getElementById("useridhidden").value;
+//alert(usertext);
+    stuff = {
+
+                    "appId":1,
+
+                    "apiToken":"111111",
+
+                    "user_id":""+usertext+""
+
+                    };
+    
+
+
+     $.ajax({
+
+    url: 'device-management/list-device-details-user',
+    type: 'POST',
+   
+    data: JSON.stringify(stuff),
+
+    dataType: 'json',
+    contentType: "application/json; charset=utf-8",
+    success: function(result) {
+    //console.log(usertext);
+    var getres=result["responseData"];
+    getres=getres[1];
+    //console.log(getres);
+
+      $.each(getres, function(i, item) {
+          
+         
+         var date = getres[i].created_at;
+         
+         //document.getElementById("tbl_devices").innerHTML += "<tr><td>"+(getres[i].id)+"</td><td><form id=myform"+(getres[i].device_id)+" action=device method=POST><input type=hidden value="+(getres[i].device_id)+" id=hidid name=hidid></input><input type=hidden value="+(getres[i].type)+" id=hid-type name=hid-type></input><a id=dev_id name=dev_id href=# onclick=document.getElementById('myform"+(getres[i].device_id)+"').submit();>"+(getres[i].device_id)+"</a></form> </td><td>"+(getres[i].make)+"</td><td>"+(getres[i].type)+"</td><td>"+(getres[i].os)+"</td><td>"+(getres[i].version)+"</td><td><span class='label label-success'>Verified</span></td><td>"+(getres[i].first_name)+"</td><td>"+(date)+"</td></tr>";
+         document.getElementById("userspan").innerHTML=getres[i].first_name;
+         document.getElementById("userspan").innerHTML+="<i class=caret></i>";
+         //console.log(getres[i].first_name);
+         
+
+      })
+
+    
+  }
+});
+
+   });
+       
+
+
+
+</script>    
+
+
+
 
 </body>
 </html>
