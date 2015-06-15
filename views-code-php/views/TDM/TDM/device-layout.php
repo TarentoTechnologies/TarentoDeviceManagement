@@ -19,7 +19,7 @@
    
                     <div class="row">
 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <section class="panel">
 
                               <header class="panel-heading">
@@ -27,7 +27,7 @@
                                    print_r($device_id);
                                  ?>
                                  
-                                 <span class="glyphicon glyphicon-edit" id="editDeviceForm" style="float: right;color:#333;cursor:pointer;"></span>
+                                 <span class="glyphicon glyphicon-edit" id="editDeviceForm" style="float: right;color:#333;cursor:pointer;z-index:1000;"></span>
                                  
                                  
                                  <input id="device_id" name="device_id" type="hidden" value=<?php print_r($device_id) ?> ></input>
@@ -185,7 +185,7 @@
                             </section>
                         
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <section class="panel">
                               <header class="panel-heading">
                                  Location Map
@@ -195,7 +195,7 @@
 
                               </div>
                             </section>
-                         </div>
+                         </div> -->
                         
                     </div>
                     <div class="row">

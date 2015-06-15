@@ -201,7 +201,7 @@ if (isset($_SESSION['user']))
  {    
     if ($_SESSION['role']=='1')
     {
-        Flight::render('TDM/TDM/newdevice-layout', array(),'content');    
+        Flight::render('TDM/TDM/newdevice-layout', array('user_id'=>$_SESSION["user"]),'content');    
         Flight::render('TDM/TDM/layout');
     }
     else

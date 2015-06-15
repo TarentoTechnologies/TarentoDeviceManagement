@@ -17,6 +17,7 @@
         <div class="alert alert-success alert-dismissable fadealert" id="success-alert" style="position:fixed;">
             <p>New device added successfully</p>
         </div>
+        <input id="log_user_id" name="log_user_id" type="hidden" value=<?php print_r($user_id) ?> ></input>
 
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
@@ -168,6 +169,7 @@ $(document).ready(function(){
     var imei=document.getElementById("imei").value;
     var comment=document.getElementById("comment").value;
     var device_type=document.getElementById("device_type").value;
+    var user_id=document.getElementById("log_user_id").value;
 
     if (device_id!="" & device_tag!="" & make!="" & model!=""& os!=""& version!="" & imei!="" & comment!="" & device_type!=-1) 
     {
@@ -193,11 +195,11 @@ $(document).ready(function(){
 
             "IMEI":""+imei+"",
 
-            "accessoryinfo":"xqwww",
+            "accessoryinfo":"somInfo",
 
             "comments":""+comment+"",
 
-            "employee_id":"111",
+            "employee_id":""+user_id+"",
 
             "purpose":"someText",
 
