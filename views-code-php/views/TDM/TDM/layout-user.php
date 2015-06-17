@@ -53,7 +53,8 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-user"></i>
-                                <input type="hidden" id="useridhidden" name="useridhidden" value=<?php print_r($user); ?>>
+                                <input type="hidden" id="useridhidden" name="useridhidden" value="<?php print_r($user); ?>">
+                                <input type="hidden" id="userhidden" name="userhidden" value="<?php print_r($user_id); ?>">
                                 <span><?php
                                         print_r($user);
                                     ?> <i class="caret"></i></span>

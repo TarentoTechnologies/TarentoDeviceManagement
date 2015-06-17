@@ -42,7 +42,7 @@
 <li>
 <input id="txtPassword" type="password" placeholder="Password" name="txtPassword">
 </li>
-<input id="txtmsg" type="hidden" name="txtmsg" value=<?php print_r($msg) ?>>
+<input id="txtmsg" type="hidden" name="txtmsg" value="<?php print_r($msg) ?>">
 <!-- <li>
 <p>
 <input id="chkBoxKeepMeSigned" type="checkbox" name="chkBoxKeepMeSigned">

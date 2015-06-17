@@ -36,7 +36,7 @@
                                               <input type="text" class="form-control" id="user-id" name="user-id">
                                           </div>
                                       </div> -->
-                                      <input type="hidden" id="useridtxt" name="useridtxt" value=<?php print_r($user_id); ?>>
+                                      <input type="hidden" id="useridtxt" name="useridtxt" value="<?php print_r($user_id); ?>">
                                       <div class="form-group">
                                           <label class="col-sm-2 col-sm-2 control-label">PIN</label>
                                           <div class="col-sm-10">

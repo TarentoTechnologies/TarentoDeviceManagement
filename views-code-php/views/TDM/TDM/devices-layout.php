@@ -37,29 +37,18 @@
                                         </div> -->
                                     </div>
                                     
-                                    <input type="hidden" id="typetext" name="typetext" value=
-                                    <?php
-                                        print_r($device_type);
-                                    ?>
-                                    >
+                                    <input type="hidden" id="typetext" name="typetext" value="<?php print_r($device_type);?>">
 
 
-                                    <input type="hidden" id="versiontext" name="versiontext" value=
-                                    <?php
-                                        print_r($device_version);
-                                    ?>
-                                    >
+                                    <input type="hidden" id="versiontext" name="versiontext" value="<?php print_r($device_version);?>">
 
-                                    <input type="hidden" id="statustext" name="statustext" value=
-                                    <?php
-                                        print_r($device_status);
-                                    ?>
-                                    >
+                                    <input type="hidden" id="statustext" name="statustext" value="<?php print_r($device_status);?>">
 
                                     
                                     <table class="table table-hover">
                                         <tr>
                                             <th>ID</th>
+                                            <th>Device-ID</th>
                                             <th>Tag</th>
                                             <th>Make</th>
                                             <th>Type</th>
@@ -131,7 +120,7 @@ function listdevicedetails()
                  if (chk==1) {
                     if (getres[i].device_status==statustext || statustext=="All") {
                         var date = getres[i].created_at;                 
-                        document.getElementById("tbl_devices").innerHTML += "<tr><td>"+(getres[i].id)+"</td><td><form id=myform"+(getres[i].id)+" action=device method=POST><input type=hidden value="+(getres[i].id)+" id=hidautoid name=hidautoid></input><input type=hidden value="+(getres[i].device_id)+" id=hidid name=hidid></input><input type=hidden value="+(getres[i].type)+" id=hid-type name=hid-type></input><a id=dev_id name=dev_id href=# onclick=document.getElementById('myform"+(getres[i].id)+"').submit();>"+(getres[i].device_id)+"</a></form> </td><td>"+(getres[i].make)+"</td><td>"+(getres[i].type_id)+"</td><td>"+(getres[i].type)+"</td><td>"+(getres[i].os)+"</td><td>"+(getres[i].version)+"</td><td>"+(getres[i].first_name)+"</td><td>"+(date)+"</td></tr>";
+                        document.getElementById("tbl_devices").innerHTML += "<tr><td>"+(getres[i].id)+"</td><td><form id=myform"+(getres[i].id)+" action=device method=POST><input type=hidden value="+(getres[i].id)+" id=hidautoid name=hidautoid></input><input type=hidden value="+(getres[i].device_id)+" id=hidid name=hidid></input><input type=hidden value='"+(getres[i].type)+"' id=hid-type name=hid-type></input><a id=dev_id name=dev_id href=# onclick=document.getElementById('myform"+(getres[i].id)+"').submit();>"+(getres[i].device_id)+"</a></form> </td><td>"+(getres[i].name)+"</td><td>"+(getres[i].make)+"</td><td>"+(getres[i].type_id)+"</td><td>"+(getres[i].type)+"</td><td>"+(getres[i].os)+"</td><td>"+(getres[i].version)+"</td><td>"+(getres[i].first_name)+"</td><td>"+(date)+"</td></tr>";
                     }
                     
                  }

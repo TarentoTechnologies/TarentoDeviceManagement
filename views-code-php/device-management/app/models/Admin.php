@@ -393,7 +393,7 @@ public function typeList()
              {
                  $deviceInformation=array();
 
-                 $sql="select distinct di.id, di.device_id,di.make,di.name,di.type,di.type_id,di.os,di.version,di.IMEI,di.accessoryinfo, di.created_at,di.updated_at from device_tracker dt, device_comment dc, deviceinfo di,device_holder_info dhi,users u where di.device_id=? and di.type=? group by di.id order by di.created_at desc";
+                 $sql="select distinct di.id, di.device_id,di.make,di.name,di.type,di.type_id,di.os,di.version,di.IMEI,di.accessoryinfo, di.created_at,di.updated_at from device_tracker dt, device_comment dc, deviceinfo di,device_holder_info dhi,users u where di.device_id=? and di.type=? group by di.id order by di.created_at desc";                 
                  $response=parent::query($sql,$deviceInformationArray);
                  $deviceInfo=array();
                  $availabilityFlag=0;
@@ -413,7 +413,7 @@ public function typeList()
                  $sql="select distinct dt.id, di.id, di.device_id,di.make,di.name,di.type,di.os,di.version,di.IMEI,di.accessoryinfo, di.created_at,di.updated_at,u.id as user_id,u.first_name,u.last_name,u.unique_id as employee_id,dhi.comments as holder_comments,dc.comment as comments,dt.current_location, dt.ip, dt.wifi,dt.created_at as track_create, dt.pin_verification_status as status from device_tracker dt, device_comment dc, deviceinfo di,device_holder_info dhi,users u where di.id=dhi.device_id and u.id=dhi.user_id and dt.device_id=di.id and di.device_id=? and di.type=? group by dt.id order by dt.created_at desc";
                  $response=parent::query($sql,$deviceInformationArray);
                  $deviceTrackInfo=array();
-                 $availabilityFlag=0;
+                 //$availabilityFlag=0;
                  while($result=$response->fetchObject())
                  {
 
@@ -429,7 +429,7 @@ public function typeList()
                 $sql="select dc.comment as comments,dc.created_on from device_comment dc, deviceinfo di where di.device_id=dc.device_id and di.device_id=? and di.type=? group by dc.created_on order by dc.created_on desc";
                  $deviceComment=array();
                  $response=parent::query($sql,$deviceInformationArray);                 
-                 $availabilityFlag=0;
+                 //$availabilityFlag=0;
                  while($result=$response->fetchObject())
                  {
 

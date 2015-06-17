@@ -11,7 +11,7 @@
 
 
  <section class="content">
-
+                        
 
 <div class="alert alert-success alert-dismissable fadealert" id="success-alert" style="position:fixed;">
             <p>Updated successfully</p>
@@ -26,13 +26,13 @@
                                  <?php 
                                    print_r($device_id);
                                  ?>
-                                 
+                                  
                                  <span class="glyphicon glyphicon-edit" id="editDeviceForm" style="float: right;color:#333;cursor:pointer;z-index:1000;"></span>
                                  
                                  
-                                 <input id="device_id" name="device_id" type="hidden" value=<?php print_r($device_id) ?> ></input>
-                                 <input id="device_type" name="device_type" type="hidden" value=<?php print_r($device_type) ?> ></input>
-                                 <input id="device_auto_id" name="device_auto_id" type="hidden" value=<?php print_r($device_auto_id) ?> ></input>
+                                 <input id="device_id" name="device_id" type="hidden" value="<?php print_r($device_id) ?>" ></input>
+                                 <input id="device_type" name="device_type" type="hidden" value="<?php print_r($device_type) ?>"></input>
+                                 <input id="device_auto_id" name="device_auto_id" type="hidden" value="<?php print_r($device_auto_id) ?>" ></input>
                               </header>
 
                               <div class="panel-body">
@@ -168,7 +168,15 @@
 
                                           <div class="col-sm-10">    
                                           <input type="text" id="commentarea" name="commentarea" placeholder="Enter your commant here..."  class="form-control" onfocus="cmtFocus()" onkeydown="cmtSubmit(event)"> </input>
-                                             <div id="" style="overflow:scroll; height:200px;border-color:gray;background-color: rgb(240,243,244); border-color:rgb(240,243,244);border-width:1;border-style:solid;"><p id="comment"> <!-- Data cable and Charger --> </p></div>
+                                             <div id="" style="overflow:scroll; height:200px;border-color:gray;background-color: rgb(240,243,244); border-color:rgb(240,243,244);border-width:1;border-style:solid;">
+                                             <p id="comment"> <!-- Data cable and Charger --> 
+
+                                             </p>
+                                             <div style="position:fixed;margin-left: 10%;z-index:2000;" id="loader-div" name="loader-div">
+                                                <img src="/public/img/ajax-loader1.gif"/>
+                                             </div>
+                                              
+                                             </div>
                                           </div>
                                       </div>
                                       <br>
@@ -414,18 +422,22 @@ document.getElementById("comment").innerHTML="";
 
           };
         
-
+$('#loader-div').show();
      $.ajax({
     url: 'device-management/get-device-info-track',
     type: 'POST',
+    complete: function() {
+                  $('#loader-div').hide();
+              },
    
     data: JSON.stringify(stuff),
 
     dataType: 'json',
     contentType: "application/json; charset=utf-8",
     success: function(result) {
-    
-    devtypeid=result["responseData"][0][0].type_id
+    console.log(result);
+    //devtypeid=result["responseData"][0][0].type_id;
+    devtypeid=1;
     var getres=result["responseData"][0];
 
       $.each(getres, function(i, item) {
@@ -459,7 +471,7 @@ document.getElementById("comment").innerHTML="";
       
 
 //console.log(getres[i].id);
-return false;
+return true;
   }
       })
 
@@ -549,6 +561,7 @@ function cmtSubmit(e)
                $.ajax({
               url: 'device-management/add-comment',
               type: 'POST',
+              
              
               data: JSON.stringify(stuff1),
 

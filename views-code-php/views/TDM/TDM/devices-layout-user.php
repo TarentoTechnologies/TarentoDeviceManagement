@@ -37,34 +37,21 @@
                                         </div> -->
                                     </div>
                                     
-                                    <input type="hidden" id="typetext" name="typetext" value=
-                                    <?php
-                                        print_r($device_type);
-                                    ?>
-                                    >
+                                    <input type="hidden" id="typetext" name="typetext" value="<?php print_r($device_type);?>">
 
 
-                                    <input type="hidden" id="versiontext" name="versiontext" value=
-                                    <?php
-                                        print_r($device_version);
-                                    ?>
-                                    >
+                                    <input type="hidden" id="versiontext" name="versiontext" value="<?php print_r($device_version);?>">
 
-                                    <input type="hidden" id="statustext" name="statustext" value=
-                                    <?php
-                                        print_r($device_status);
-                                    ?>
-                                    >
+                                    <input type="hidden" id="statustext" name="statustext" value="<?php print_r($device_status);?>">
 
-                                    <input type="hidden" id="usertext" name="usertext" value=
-                                    <?php
-                                        print_r($user);
-                                    ?>
-                                    >
+                                    <input type="hidden" id="usertext" name="usertext" value="<?php print_r($user);?>">
+
+                                    <input type="hidden" id="useridtext" name="useridtext" value="<?php print_r($user_id);?>">
                                     
                                     <table class="table table-hover">
                                         <tr>
                                             <th>ID</th>
+                                            <th>Device-ID</th>
                                             <th>Tag</th>
                                             <th>Make</th>
                                             <th>Type</th>
@@ -100,7 +87,7 @@
 function listdevicedetails()
 {
 
-            var usertext=document.getElementById("usertext").value
+            var useridtext=document.getElementById("useridtext").value;
 
             var stuff = new Object();
 
@@ -112,7 +99,7 @@ function listdevicedetails()
 
                     "apiToken":"111111",
 
-                    "user_id":""+usertext+""
+                    "user_id":""+useridtext+""
 
                     };
               
@@ -153,7 +140,7 @@ function listdevicedetails()
                     if (getres[i].device_status==statustext || statustext=="All") {
                         var date = getres[i].created_at;                 
                         /*<td>"+(getres[i].first_name)+"</td>*/
-                        document.getElementById("tbl_devices").innerHTML += "<tr><td>"+(getres[i].id)+"</td><td>"+(getres[i].device_id)+" </td><td>"+(getres[i].make)+"</td><td>"+(getres[i].type_id)+"</td><td>"+(getres[i].type)+"</td><td>"+(getres[i].os)+"</td><td>"+(getres[i].version)+"</td><td>"+(date)+"</td></tr>";
+                        document.getElementById("tbl_devices").innerHTML += "<tr><td>"+(getres[i].id)+"</td><td>"+(getres[i].device_id)+" </td><td>"+(getres[i].name)+"</td><td>"+(getres[i].make)+"</td><td>"+(getres[i].type_id)+"</td><td>"+(getres[i].type)+"</td><td>"+(getres[i].os)+"</td><td>"+(getres[i].version)+"</td><td>"+(date)+"</td></tr>";
                     }
                     
                  }

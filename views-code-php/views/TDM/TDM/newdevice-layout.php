@@ -17,7 +17,7 @@
         <div class="alert alert-success alert-dismissable fadealert" id="success-alert" style="position:fixed;">
             <p>New device added successfully</p>
         </div>
-        <input id="log_user_id" name="log_user_id" type="hidden" value=<?php print_r($user_id) ?> ></input>
+        <input id="log_user_id" name="log_user_id" type="hidden" value="<?php print_r($user_id) ?>"></input>
 
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">

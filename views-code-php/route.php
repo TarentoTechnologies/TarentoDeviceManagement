@@ -221,8 +221,9 @@ if (isset($_SESSION['user']))
 Flight::route('POST /device', function(){
 
     $device_id=$_POST['hidid'];
-    $device_type=$_POST['hid-type'];
+    $device_type=$_POST['hid-type'];    
     $device_auto_id=$_POST['hidautoid'];
+    
 
     Flight::render('TDM/TDM/device-layout', array('device_id' => $device_id,'device_type' => $device_type,'device_auto_id' => $device_auto_id),'content');    
     Flight::render('TDM/TDM/layout');
