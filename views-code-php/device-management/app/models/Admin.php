@@ -15,17 +15,46 @@ class Admin extends DB
     {   
         try
         {
-        $sql = "CALL addDeviceDetails(?,?,?,?,?,?,?,?,@addDeviceResponse,?,?,?,?,?,?)";
-        parent::query($sql,$deviceDetails);
-        $sql = "select @addDeviceResponse as response";
-        $response=parent::query($sql);
-        $resp="";
-        while($result=$response->fetchObject())
+            $exist=0;
+
+         $sql="select distinct di.id, di.device_id, di.type from deviceinfo di where di.device_id=? and di.type=?";
+         $checkExists=array();
+         $checkExists[0]=$deviceDetails[0];
+         $checkExists[1]=$deviceDetails[3];
+
+         error_log(print_r($checkExists,true));
+         
+         
+         
+         $response=parent::query($sql,$checkExists);
+         
+         while($result=$response->fetchObject())
+          {
+            $exist=1;
+          }
+
+
+
+
+        if ($exist==1) 
         {
-           $resp=$result->response;  
+            $message="Already exists. Try with different";
+        }
+        else
+        {
+            $sql = "CALL addDeviceDetails(?,?,?,?,?,?,?,?,@addDeviceResponse,?,?,?,?,?,?)";
+            parent::query($sql,$deviceDetails);
+            $sql = "select @addDeviceResponse as response";
+            $response=parent::query($sql);
+            $resp="";
+            while($result=$response->fetchObject())
+            {
+               $resp=$result->response;  
+            }
+            $message="Successfully added the device";
         }
 
-          return array(API_RESPONSE_STATUS_CODE=>200,API_RESPONSE_STATUS_MESSAGE=>"Successfully added the device",API_RESPONSE=>array());
+          return array(API_RESPONSE_STATUS_CODE=>200,API_RESPONSE_STATUS_MESSAGE=>$message,API_RESPONSE=>array());
         }
         catch(Exception $e)
         {
@@ -158,7 +187,7 @@ class Admin extends DB
     {   
         try
         {
-        $sql = "CALL device_comment(?,?,@cmtResponse)";
+        $sql = "CALL device_comment(?,?,@cmtResponse,?)";
         parent::query($sql,$cmt);
         $sql = "select @cmtResponse as response";
         $response=parent::query($sql);
@@ -387,13 +416,13 @@ public function typeList()
     {
          $device_types_array=array();   
          $device_types_array=Admin::typeList();
-
+ 
         
              try
              {
                  $deviceInformation=array();
 
-                 $sql="select distinct di.id, di.device_id,di.make,di.name,di.type,di.type_id,di.os,di.version,di.IMEI,di.accessoryinfo, di.created_at,di.updated_at from device_tracker dt, device_comment dc, deviceinfo di,device_holder_info dhi,users u where di.device_id=? and di.type=? group by di.id order by di.created_at desc";                 
+                 $sql="select distinct di.id, di.device_id,di.make,di.name,di.type,di.type_id,di.os,di.version,di.IMEI,di.accessoryinfo, di.created_at,di.updated_at from deviceinfo di where di.device_id=? and di.type=? group by di.id order by di.created_at desc";
                  $response=parent::query($sql,$deviceInformationArray);
                  $deviceInfo=array();
                  $availabilityFlag=0;
@@ -408,10 +437,15 @@ public function typeList()
 
                  }
 
+                 
 
 
-                 $sql="select distinct dt.id, di.id, di.device_id,di.make,di.name,di.type,di.os,di.version,di.IMEI,di.accessoryinfo, di.created_at,di.updated_at,u.id as user_id,u.first_name,u.last_name,u.unique_id as employee_id,dhi.comments as holder_comments,dc.comment as comments,dt.current_location, dt.ip, dt.wifi,dt.created_at as track_create, dt.pin_verification_status as status from device_tracker dt, device_comment dc, deviceinfo di,device_holder_info dhi,users u where di.id=dhi.device_id and u.id=dhi.user_id and dt.device_id=di.id and di.device_id=? and di.type=? group by dt.id order by dt.created_at desc";
+
+                 //$sql="select distinct dt.id, di.id, di.device_id,di.make,di.name,di.type,di.os,di.version,di.IMEI,di.accessoryinfo, di.created_at,di.updated_at,u.id as user_id,u.first_name,u.last_name,u.unique_id as employee_id,dhi.comments as holder_comments,dc.comment as comments,dt.current_location, dt.ip, dt.wifi,dt.created_at as track_create, dt.pin_verification_status as status from device_tracker dt, device_comment dc, deviceinfo di,device_holder_info dhi,users u where di.id=dhi.device_id and u.id=dhi.user_id and dc.device_id=di.device_id and dt.device_id=di.id and di.device_id=? and di.type=? group by dt.id order by dt.created_at desc";
+                 $sql="select distinct dt.id, di.id, di.device_id,di.make,di.name,di.type,di.os,di.version,di.IMEI,di.accessoryinfo, di.created_at,di.updated_at,u.id as user_id,u.first_name,u.last_name,u.unique_id as employee_id,dhi.comments as holder_comments,dt.current_location, dt.ip, dt.wifi,dt.created_at as track_create, dt.pin_verification_status as status from device_tracker dt, deviceinfo di,device_holder_info dhi,users u where di.id=dhi.device_id and u.id=dhi.user_id and dt.device_id=di.id and di.device_id=? and di.type=? group by dt.id order by dt.created_at desc";
                  $response=parent::query($sql,$deviceInformationArray);
+                 
+
                  $deviceTrackInfo=array();
                  //$availabilityFlag=0;
                  while($result=$response->fetchObject())
@@ -424,9 +458,11 @@ public function typeList()
 
                  }
 
+                 
 
 
-                $sql="select dc.comment as comments,dc.created_on from device_comment dc, deviceinfo di where di.device_id=dc.device_id and di.device_id=? and di.type=? group by dc.created_on order by dc.created_on desc";
+
+                $sql="select dc.comment as comments,dc.created_on from device_comment dc, deviceinfo di where di.device_id=dc.device_id and dc.device_id=? and dc.type=? group by dc.created_on order by dc.created_on desc";
                  $deviceComment=array();
                  $response=parent::query($sql,$deviceInformationArray);                 
                  //$availabilityFlag=0;
@@ -437,12 +473,14 @@ public function typeList()
                       $record=(array)$result;
                     array_push($deviceComment,$record);
                      }
-
+                
 
                  array_push($deviceInformation, $deviceInfo);
                  array_push($deviceInformation, $deviceTrackInfo);
                  array_push($deviceInformation, $deviceComment);
                  array_push($deviceInformation, $device_types_array);
+                 
+
                  
 
 

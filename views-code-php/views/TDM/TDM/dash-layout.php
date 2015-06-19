@@ -98,15 +98,22 @@
                     
 
                      <div class="row" id="graphView" name="graphView">
-                      <div class="col-md-12" id="chartheader">
+                      <div class="col-md-12 col-xs-12" id="chartheader">
                        <div class="panel">
                         <header class="panel-heading">
-                          Device assigned details 
-                          <select id="deviceSelect" name="deviceSelect" onchange="selectFunction()" style="float:right;border:none;background-color:#fafafa;text-align:center;" ></select> 
+                          <div class=row>
+                            <div class="col-md-6 col-xs-6">
+                              Device assigned details 
+                            </div>
+                            <div class="col-md-6 col-xs-6">
+                              <select id="deviceSelect" name="deviceSelect" onchange="selectFunction()" style="float:right;border:none;background-color:#fafafa;text-align:center;" ></select> 
+                            </div>
+                          </div>
                         </header>
                         
-                        
-                        <div style="width:100%;" id="chart" name="chart"></div>
+                        <div class="panel-body table-responsive">
+                          <div style="width:100%;" id="chart" name="chart"></div>
+                        </div>
                         
                        </div>
                       </div>

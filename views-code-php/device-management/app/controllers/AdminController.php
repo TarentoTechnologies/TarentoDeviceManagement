@@ -189,11 +189,12 @@
           $is_valid = GUMP::is_valid($deviceDetails, array(
               'device_id' =>'required',
               'type'=>'required'
-          ));
+          ));          
           if($is_valid === true) 
           {
            $deviceInformationArray[]=$deviceDetails["device_id"];
            $deviceInformationArray[]=$deviceDetails["type"];
+
 
            $response=$this->admin->getDeviceInfoWithTrackFromIMEI($deviceInformationArray);
             Flight::json($response);
@@ -285,12 +286,14 @@
            $deviceDetails=json_decode(Flight::request()->getBody(),true);
            $is_valid = GUMP::is_valid($deviceDetails, array(
         'device_id' => 'required|alpha_numeric',        
+        'type'=>'required',
         'comment'=>'required'
              ));
           if($is_valid === true) 
           {
-           $deviceInformationArray[]=$deviceDetails["device_id"];           
+           $deviceInformationArray[]=$deviceDetails["device_id"];                      
            $deviceInformationArray[]=$deviceDetails["comment"];
+           $deviceInformationArray[]=$deviceDetails["type"];           
 
            error_log("========================================");
            error_log(print_r($deviceInformationArray,true));

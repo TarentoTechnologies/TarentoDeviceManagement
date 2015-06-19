@@ -14,9 +14,14 @@
   <section class="content">
                    
 
-        <div class="alert alert-success alert-dismissable fadealert" id="success-alert" style="position:fixed;">
+        <div class="alert alert-success alert-dismissable fadealert" id="success-alert" style="position:fixed;width:50%;margin-left:50%;">
             <p>New device added successfully</p>
         </div>
+        <div class="alert alert-danger alert-dismissable fadealert" id="exists-alert" style="position:fixed;width:50%;margin-left:50%;">
+            <p>Already exists. try with different</p>
+        </div>
+
+
         <input id="log_user_id" name="log_user_id" type="hidden" value="<?php print_r($user_id) ?>"></input>
 
                     <div class="row">
@@ -220,7 +225,49 @@ $(document).ready(function(){
               contentType: "application/json; charset=utf-8",
               success: function(result) {
               
-              var getres=result["responseData"];
+              var getres=result["statusCode"];
+              if (getres=="200" ) 
+              {
+                if (result["statusMessage"]=="Successfully added the device") 
+                {
+                    document.getElementById("device-id").value="";
+                    document.getElementById("device-tag").value="";
+                    document.getElementById("make").value="";
+                    document.getElementById("model").value="";
+                    document.getElementById("os").value="";
+                    document.getElementById("version").value="";
+                    document.getElementById("imei").value="";
+                    document.getElementById("comment").value="";
+                    document.getElementById("device_type").value=-1;
+
+                    $("#success-alert").fadeTo(2000, 50).slideUp(500, function(){
+                    $("#success-alert").addClass("in");
+
+                    });
+
+                    $("#success-alert").fadeTo(1000, 500).slideUp(500, function(){
+                    $("#success-alert").addClass("in");
+                     });
+
+                }
+                else
+                {
+                    $("#exists-alert").fadeTo(2000, 50).slideUp(500, function(){
+                    $("#exists-alert").addClass("in");
+
+                    });
+
+                    $("#exists-alert").fadeTo(1000, 500).slideUp(500, function(){
+                    $("#exists-alert").addClass("in");
+                     });
+
+                    $("#device-id").css("border-color","red");
+                    $("#model").css("border-color","red");
+
+                }
+                
+              }
+              
 
                 $.each(getres, function(i, item) {
                     })
@@ -229,7 +276,7 @@ $(document).ready(function(){
             }
           });
 
-          document.getElementById("device-id").value="";
+/*          document.getElementById("device-id").value="";
           document.getElementById("device-tag").value="";
           document.getElementById("make").value="";
           document.getElementById("model").value="";
@@ -247,7 +294,7 @@ $(document).ready(function(){
           $("#success-alert").fadeTo(1000, 500).slideUp(500, function(){
           $("#success-alert").addClass("in");
            });
-
+*/
 
 
      }

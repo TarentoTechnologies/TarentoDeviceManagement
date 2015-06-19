@@ -9,11 +9,10 @@
 <body>
 
 
-
  <section class="content">
                         
 
-<div class="alert alert-success alert-dismissable fadealert" id="success-alert" style="position:fixed;">
+<div class="alert alert-success alert-dismissable fadealert" id="success-alert" style="position:fixed;width:50%;margin-left:50%;">
             <p>Updated successfully</p>
         </div>
    
@@ -127,6 +126,8 @@
                                               <p id="make"> <!-- Apple --> </p>
                                           </div>
                                       </div>
+
+
                                       <br>
                                       <div class="form-group">
                                           <label class="col-sm-2 col-sm-2 control-label">Model</label>
@@ -163,18 +164,24 @@
                                           </div>
                                       </div>
                                       <br>
+
                                       <div class="form-group">
+
                                           <label class="col-sm-2 col-sm-2 control-label">Comments</label>
 
                                           <div class="col-sm-10">    
-                                          <input type="text" id="commentarea" name="commentarea" placeholder="Enter your commant here..."  class="form-control" onfocus="cmtFocus()" onkeydown="cmtSubmit(event)"> </input>
+                                          
+                                          <input type="text" id="commentarea" name="commentarea" placeholder="Enter your commant here..."  class="form-control" onfocus="cmtFocus()" onkeydown="cmtSubmit(event)">
+
+                                          </input>
                                              <div id="" style="overflow:scroll; height:200px;border-color:gray;background-color: rgb(240,243,244); border-color:rgb(240,243,244);border-width:1;border-style:solid;">
                                              <p id="comment"> <!-- Data cable and Charger --> 
 
                                              </p>
-                                             <div style="position:fixed;margin-left: 10%;z-index:2000;" id="loader-div" name="loader-div">
+                                            <div style="position:fixed;margin-left: 10%;z-index:2000;" id="loader-div" name="loader-div">
                                                 <img src="/public/img/ajax-loader1.gif"/>
                                              </div>
+                                             
                                               
                                              </div>
                                           </div>
@@ -207,14 +214,14 @@
                         
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-xs-12">
 
-                          <section class="panel">
+                          <div class="panel">
                               <header class="panel-heading">
                                  Trace
                               </header>
-                              <div class="panel-body">
-                                  <table class="table table-hover">
+                              <div class="panel-body table-responsive">
+                                  <table class="table table-hover col-xs-6">
                                         <tr>
                                             
                                             <th>Owner</th>
@@ -229,7 +236,7 @@
                                     </table>
                                   
                               </div>
-                            </section>
+                            </div>
 
                         </div>
 
@@ -268,6 +275,11 @@ var devtypeid;
 $(document).ready(function()
 {
 
+
+  
+
+
+
     $("#editDeviceForm").click(function(){
 
 
@@ -305,105 +317,20 @@ document.getElementById("device_typeEdit").innerHTML="";
 
 
 
-function deviceEditFun()
-{
 
 
-  $("#makeEdit").css("border-color","#ccc");
-  $("#modelEdit").css("border-color","#ccc");
-  $("#osEdit").css("border-color","#ccc");
-  $("#versionEdit").css("border-color","#ccc");
-  $("#imeiEdit").css("border-color","#ccc");
-  $("#device_typeEdit").css("border-color","#ccc");
-
-
-
-
-  var makeEdit=document.getElementById("makeEdit").value;
-  var typeEdit=document.getElementById("modelEdit").value;
-  var osEdit=document.getElementById("osEdit").value;
-  var versionEdit=document.getElementById("versionEdit").value;
-  var imeiEdit=document.getElementById("imeiEdit").value;
-  var typeidEdit=document.getElementById("device_typeEdit").value;
- 
- if (makeEdit!="" & typeEdit!="" & osEdit!="" & versionEdit!=""& imeiEdit!=""& typeidEdit!="") 
-    {
-
-      var stuff = new Object();
-                  document.getElementById("commentarea").value="";
-             
-
-
-
-      document.getElementById("tbl_track").innerHTML="";
-      document.getElementById("comment").innerHTML="";
-
-
-
-
-
-          stuff = {
-
-                "appId":1,
-
-                "apiToken":"111111",
-
-                "make":""+makeEdit+"",
-                "type":""+typeEdit+"",
-                "os":""+osEdit+"",
-                "version":""+versionEdit+"",
-                "imei":""+imeiEdit+"",
-                "type_id":""+typeidEdit+"",
-                "id":""+devid+""
-
-                };
-
-           $.ajax({
-          url: 'device-management/edit-device-info',
-          type: 'POST',
-         
-          data: JSON.stringify(stuff),
-
-          dataType: 'json',
-          contentType: "application/json; charset=utf-8",
-          success: function(result) {
-
-        }
-      });
-      $("#editdiv").toggle(500);  
-      document.getElementById("device_type").value=typeEdit      
-      deviceFun();
-        $("#success-alert").fadeTo(2000, 50).slideUp(500, function(){
-          $("#success-alert").addClass("in");
-
-          });
-    }
-   else
-      {
-
-        if(makeEdit=="")  { $("#makeEdit").css("border-color","red"); }
-        if(typeEdit==""){$("#modelEdit").css("border-color","red");} 
-        if(osEdit==""){$("#osEdit").css("border-color","red");}
-        if(versionEdit==""){$("#versionEdit").css("border-color","red");}
-        if(imeiEdit==""){$("#imeiEdit").css("border-color","red");}
-        if(typeidEdit==""){$("#device_typeEdit").css("border-color","red");}
-        
-      }
-}
-
-
-
+/* For retrieve everything */
 
 function deviceFun()
 {
  
 
 var stuff = new Object();
-document.getElementById("commentarea").value="";
+
 
 
 document.getElementById("tbl_track").innerHTML="";
-document.getElementById("comment").innerHTML="";
+//document.getElementById("comment").innerHTML="";
 
 
 
@@ -435,9 +362,9 @@ $('#loader-div').show();
     dataType: 'json',
     contentType: "application/json; charset=utf-8",
     success: function(result) {
-    console.log(result);
-    //devtypeid=result["responseData"][0][0].type_id;
-    devtypeid=1;
+    /*console.log(result);*/
+    devtypeid=result["responseData"][0][0].type_id;
+    //devtypeid=1;
     var getres=result["responseData"][0];
 
       $.each(getres, function(i, item) {
@@ -449,7 +376,7 @@ $('#loader-div').show();
          document.getElementById("auto_id").innerHTML=getres[i].id;
          devid=getres[i].id;
 
-         document.getElementById("tag").innerHTML=getres[i].device_id;
+         document.getElementById("tag").innerHTML=getres[i].name;
          document.getElementById("tagHidden").value=getres[i].device_id;
          document.getElementById("make").innerHTML=getres[i].make;
          devmake=getres[i].make;
@@ -505,6 +432,7 @@ for (var key in result["responseData"][3]) {
 }
 
 getres=result["responseData"][2];
+document.getElementById("comment").innerHTML="";
  $.each(getres, function(i, item) {
          
          document.getElementById("comment").innerHTML+="------------<br>On "+getres[i].created_on+"<br>"+getres[i].comments+"<br>------------<br><br>";
@@ -512,6 +440,7 @@ getres=result["responseData"][2];
         
   
       })
+ document.getElementById("commentarea").value="";
 
 
 
@@ -522,10 +451,119 @@ getres=result["responseData"][2];
 
 }
 
+
+
+/* For edit and update */
+
+function deviceEditFun()
+{
+
+
+  $("#makeEdit").css("border-color","#ccc");
+  $("#modelEdit").css("border-color","#ccc");
+  $("#osEdit").css("border-color","#ccc");
+  $("#versionEdit").css("border-color","#ccc");
+  $("#imeiEdit").css("border-color","#ccc");
+  $("#device_typeEdit").css("border-color","#ccc");
+
+
+
+
+  var makeEdit=document.getElementById("makeEdit").value;
+  var typeEdit=document.getElementById("modelEdit").value;
+  var osEdit=document.getElementById("osEdit").value;
+  var versionEdit=document.getElementById("versionEdit").value;
+  var imeiEdit=document.getElementById("imeiEdit").value;
+  var typeidEdit=document.getElementById("device_typeEdit").value;
+ 
+ if (makeEdit!="" & typeEdit!="" & osEdit!="" & versionEdit!=""& imeiEdit!=""& typeidEdit!="") 
+    {
+
+      var stuff = new Object();
+                  document.getElementById("commentarea").value="";
+             
+
+
+
+      
+
+
+
+
+
+          stuff = {
+
+                "appId":1,
+
+                "apiToken":"111111",
+
+                "make":""+makeEdit+"",
+                "type":""+typeEdit+"",
+                "os":""+osEdit+"",
+                "version":""+versionEdit+"",
+                "imei":""+imeiEdit+"",
+                "type_id":""+typeidEdit+"",
+                "id":""+devid+""
+
+                };
+
+           $.ajax({
+          url: 'device-management/edit-device-info',
+          type: 'POST',
+         
+          data: JSON.stringify(stuff),
+
+          dataType: 'json',
+          contentType: "application/json; charset=utf-8",
+          success: function(result)
+          {
+            
+            document.getElementById("device_type").value=typeEdit      
+      
+            $("#success-alert").fadeTo(2000, 50).slideUp(500, function(){
+            $("#success-alert").addClass("in");
+
+            });
+
+           /* document.getElementById("tbl_track").innerHTML="";
+            document.getElementById("comment").innerHTML="";*/
+            //$("#editdiv").toggle(500);  
+            
+            deviceFun();
+            cmtFocus();
+
+
+          }
+      });
+      
+
+        
+    }
+   else
+      {
+
+        if(makeEdit=="")  { $("#makeEdit").css("border-color","red"); }
+        if(typeEdit==""){$("#modelEdit").css("border-color","red");} 
+        if(osEdit==""){$("#osEdit").css("border-color","red");}
+        if(versionEdit==""){$("#versionEdit").css("border-color","red");}
+        if(imeiEdit==""){$("#imeiEdit").css("border-color","red");}
+        if(typeidEdit==""){$("#device_typeEdit").css("border-color","red");}
+        
+      }
+}
+
+
+
+
+
 function cmtFocus()
 {
-  $("#editdiv").hide(500);  
+  $("#editdiv").hide(1000);  
 }
+
+
+
+/* For comment adding */
 
 function cmtSubmit(e)
 {
@@ -537,6 +575,7 @@ function cmtSubmit(e)
 
   var device_id=document.getElementById("tagHidden").value;
   var cmt=document.getElementById("commentarea").value;
+  var device_type=document.getElementById("device_type").value;
 
  
 
@@ -551,6 +590,8 @@ function cmtSubmit(e)
            "apiToken":"111111",
 
             "device_id":""+device_id+"",
+
+            "type":""+device_type+"",
 
             "comment":""+cmt+""
             

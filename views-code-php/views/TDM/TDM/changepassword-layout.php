@@ -14,12 +14,12 @@
   <section class="content">
 
 
-        <div class="alert alert-success alert-dismissable fadealert" id="success-alert" style="position:fixed;">
+        <div class="alert alert-success alert-dismissable fadealert" id="success-alert" style="position:fixed;width:50%;margin-left:50%;">
             <p>Password successfully changed.</p>
         </div>
 
 
-        <div class="alert alert-danger alert-dismissable fadealert" id="fail-alert" style="position:fixed;">
+        <div class="alert alert-danger alert-dismissable fadealert" id="fail-alert" style="position:fixed;width:50%;margin-left:50%;">
             <p>Password mismatch</p>
         </div>
 

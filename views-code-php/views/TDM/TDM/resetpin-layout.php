@@ -11,12 +11,12 @@
   <section class="content">
 
 
-        <div class="alert alert-success alert-dismissable fadealert" id="success-alert" style="position:fixed;">
+        <div class="alert alert-success alert-dismissable fadealert" id="success-alert" style="position:fixed;width:50%;margin-left:50%;">
             <p>Pin successfully updated.</p>
         </div>
 
 
-        <div class="alert alert-danger alert-dismissable fadealert" id="fail-alert" style="position:fixed;">
+        <div class="alert alert-danger alert-dismissable fadealert" id="fail-alert" style="position:fixed;width:50%;margin-left:50%;">
             <p>Something went wrong</p>
         </div>
 
