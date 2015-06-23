@@ -91,7 +91,7 @@ function listdevicedetails()
 
             var stuff = new Object();
 
-//            stuff = {'appId':'1','apiToken':'111111','user_id':''+user_id+''};
+
 
             stuff = {
 

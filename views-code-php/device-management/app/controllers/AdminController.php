@@ -171,7 +171,7 @@
      }
 
 
-     /**
+      /**
       * Get device details with tracking
       *
       * get device information
@@ -180,6 +180,32 @@
       * @return (type) (name)
       */
 
+     public function getdeviceInformation()
+     {
+          error_log(print_r("inside admin Controllers",true));
+          $deviceInformationArray=array();
+          $deviceDetails=json_decode(Flight::request()->getBody(),true);
+          error_log(print_r($deviceDetails,true));
+          $is_valid = GUMP::is_valid($deviceDetails, array(
+              'device_id' =>'required',
+              'type'=>'required'
+          ));
+          if($is_valid === true) 
+          {
+           $deviceInformationArray[]=$deviceDetails["device_id"];
+           $deviceInformationArray[]=$deviceDetails["type"];
+           $response=$this->admin->getDeviceInfoFromIMEI($deviceInformationArray);
+            Flight::json($response);
+           }
+           else 
+           {
+            echo Flight::json(array(API_RESPONSE_STATUS_CODE=>400,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Bad Request",API_RESPONSE=>$is_valid));
+           }
+          //Flight::json($response);
+     }     
+
+
+    
      public function getdeviceInformationTrack()
      {
 

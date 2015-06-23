@@ -611,8 +611,7 @@ function cmtSubmit(e)
               success: function(result) {
               var getres=result["responseData"];
 
-               /* $.each(getres, function(i, item) {
-                      })*/
+              
 
               
             }

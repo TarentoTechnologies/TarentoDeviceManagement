@@ -95,8 +95,6 @@ class Admin extends DB
 
 
 
-
-                     //array_push($deviceInformation,(array)$result);
                  }
 
                  return array(API_RESPONSE_STATUS_CODE=>200,API_RESPONSE_STATUS_MESSAGE=>"Success",API_RESPONSE=>$deviceInformation);
@@ -111,6 +109,41 @@ class Admin extends DB
     }
 
 
+    /**
+     * getDeviceInfoFromIMEI
+     *
+     * it will get the device informtion with device holder
+     *
+     * @param (type) (name) about this param
+     * @return (type) (name)
+     */
+    public function getDeviceInfoFromIMEI($deviceInformationArray)
+    {
+             try
+             {
+                 error_log(print_r($deviceInformationArray,true));
+                 error_log(print_r("inside admin",true));
+                 $sql="select di.*,u.id as user_id,u.first_name,u.last_name,u.unique_id as employee_id from deviceinfo di left join device_holder_info dhi on di.id=dhi.device_id left join users u on u.id=dhi.user_id where di.device_id=? and di.type=?";
+                 $response=parent::query($sql,$deviceInformationArray);
+                 $deviceInformation=array();
+                 $availabilityFlag=0;
+                 while($result=$response->fetchObject())
+                 {
+
+                     $deviceInformation=(array)$result;
+                      $availabilityFlag=1;
+                     //array_push($deviceInformation,(array)$result);
+                     error_log(print_r($deviceInformation,true));
+                 }
+
+                return  ($availabilityFlag) ?   array(API_RESPONSE_STATUS_CODE=>200,API_RESPONSE_STATUS_MESSAGE=>"Success",API_RESPONSE=>$deviceInformation) :  array(API_RESPONSE_STATUS_CODE=>200,API_RESPONSE_STATUS_MESSAGE=>"This device is not assigned with any user",API_RESPONSE=>$deviceInformation);
+              }
+             catch(Exception $e)
+             {
+                  return array(API_RESPONSE_STATUS_CODE=>500,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Failure");
+     
+             }
+    }
 
 
   /**
@@ -441,13 +474,11 @@ public function typeList()
 
 
 
-                 //$sql="select distinct dt.id, di.id, di.device_id,di.make,di.name,di.type,di.os,di.version,di.IMEI,di.accessoryinfo, di.created_at,di.updated_at,u.id as user_id,u.first_name,u.last_name,u.unique_id as employee_id,dhi.comments as holder_comments,dc.comment as comments,dt.current_location, dt.ip, dt.wifi,dt.created_at as track_create, dt.pin_verification_status as status from device_tracker dt, device_comment dc, deviceinfo di,device_holder_info dhi,users u where di.id=dhi.device_id and u.id=dhi.user_id and dc.device_id=di.device_id and dt.device_id=di.id and di.device_id=? and di.type=? group by dt.id order by dt.created_at desc";
                  $sql="select distinct dt.id, di.id, di.device_id,di.make,di.name,di.type,di.os,di.version,di.IMEI,di.accessoryinfo, di.created_at,di.updated_at,u.id as user_id,u.first_name,u.last_name,u.unique_id as employee_id,dhi.comments as holder_comments,dt.current_location, dt.ip, dt.wifi,dt.created_at as track_create, dt.pin_verification_status as status from device_tracker dt, deviceinfo di,device_holder_info dhi,users u where di.id=dhi.device_id and u.id=dhi.user_id and dt.device_id=di.id and di.device_id=? and di.type=? group by dt.id order by dt.created_at desc";
                  $response=parent::query($sql,$deviceInformationArray);
                  
 
                  $deviceTrackInfo=array();
-                 //$availabilityFlag=0;
                  while($result=$response->fetchObject())
                  {
 
@@ -465,7 +496,6 @@ public function typeList()
                 $sql="select dc.comment as comments,dc.created_on from device_comment dc, deviceinfo di where di.device_id=dc.device_id and dc.device_id=? and dc.type=? group by dc.created_on order by dc.created_on desc";
                  $deviceComment=array();
                  $response=parent::query($sql,$deviceInformationArray);                 
-                 //$availabilityFlag=0;
                  while($result=$response->fetchObject())
                  {
 

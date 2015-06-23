@@ -11,31 +11,24 @@ Flight::route('/role', function()
     Flight::redirect('device-management/check-user-role');
 });
 
+
+
+Flight::route('/get-device-info', function()
+{
+    Flight::redirect('/device-management/');
+});
+
+
+
 Flight::route('POST /login-check', function()
 {
    
     $user=$_POST['txtUserName'];
     $pass=$_POST['txtPassword'];
 
-  
-
-    //$client="";
-    //$client = new Redmine\Client('','');
     $client = new Redmine\Client('http://greenpine.idc.tarento.com',$user,$pass);
-    //$client->getImpersonateUser();
     $client->api('user')->getCurrentUser();
-    //$client->api('project')->all();
-    //print_r($client);
-    //print_r($_SESSION);
     $url=$user.":".$pass."@greenpine.idc.tarento.com/users/current.xml?include=memberships,groups";
-
-    //$url="rajarathinam.ganeshan@tarento.com:36072952@greenpine.idc.tarento.com/users/current.xml";
-
-    //$url="https://greenpine.idc.tarento.com/users/current.xml";
-
-
-
-
 
     $url="https://".$url;
 
@@ -47,9 +40,7 @@ Flight::route('POST /login-check', function()
         $xml = simplexml_load_string($str);    
         $json = json_encode($xml);
         $array = json_decode($json,TRUE);
-        /*echo "<pre>";
-        print_r($array);
-        echo "</pre>";*/
+        
 
         $url="http://inet.idc.tarento.com/getPeople";
          $ch = curl_init();
@@ -98,7 +89,6 @@ Flight::route('POST /login-check', function()
 
 if (isset($_SESSION['user']))
  { 
-    //print_r($_SESSION);
     if ($_SESSION['role']=='1')
     {
         Flight::redirect('dash');
@@ -121,7 +111,6 @@ Flight::route('/home', function()
 {
 
     session::destroy();
-    //Flight::render('TDM/TDM/login', array(),'content');    
     Flight::render('TDM/TDM/login',array('msg'=>""));
 
 });
@@ -139,7 +128,6 @@ Flight::route('/dash', function()
  {    
     if ($_SESSION['role']=='1')
     {
-        //print_r($_SESSION);
         Flight::render('TDM/TDM/dash-layout', array(),'content');    
         Flight::render('TDM/TDM/layout');
     }
@@ -167,8 +155,7 @@ Flight::route('/layout-check', function(){
 Flight::route('/changepwd', function()
 {
 
- /*   Flight::render('TDM/TDM/changepassword-layout', array(),'content');    
-    Flight::render('TDM/TDM/layout');*/
+ 
  if (isset($_SESSION['user']))
  {
     Flight::redirect("https://greenpine.idc.tarento.com/my/password");

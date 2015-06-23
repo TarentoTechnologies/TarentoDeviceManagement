@@ -236,10 +236,8 @@ $(document).ready(function(){
          
          var date = getres[i].created_at;
          
-         //document.getElementById("tbl_devices").innerHTML += "<tr><td>"+(getres[i].id)+"</td><td><form id=myform"+(getres[i].device_id)+" action=device method=POST><input type=hidden value="+(getres[i].device_id)+" id=hidid name=hidid></input><input type=hidden value="+(getres[i].type)+" id=hid-type name=hid-type></input><a id=dev_id name=dev_id href=# onclick=document.getElementById('myform"+(getres[i].device_id)+"').submit();>"+(getres[i].device_id)+"</a></form> </td><td>"+(getres[i].make)+"</td><td>"+(getres[i].type)+"</td><td>"+(getres[i].os)+"</td><td>"+(getres[i].version)+"</td><td><span class='label label-success'>Verified</span></td><td>"+(getres[i].first_name)+"</td><td>"+(date)+"</td></tr>";
          document.getElementById("userspan").innerHTML=getres[i].first_name;
          document.getElementById("userspan").innerHTML+="<i class=caret></i>";
-         //console.log(getres[i].first_name);
          
 
       })

@@ -2,6 +2,7 @@
 require 'app/config/apikeys.php';
 require 'app/config/urlConstants.php';
 require 'vendor/autoload.php';
+
 use App\lib\AppContainer;
 use App\lib\Utility;
 
@@ -141,6 +142,7 @@ Flight::before('start', function(&$params, &$output)
    $deviceDetails=json_decode(Flight::request()->getBody(),true);
   // error_log(print_r($deviceDetails,true));
 
+
   error_log("==============================================");
   //// error_log(print_r($deviceDetails,true));
      try
@@ -148,6 +150,7 @@ Flight::before('start', function(&$params, &$output)
       if($deviceDetails==null)
       {
            error_log("test=====================================");
+
          echo Flight::json(array(API_RESPONSE_STATUS_CODE=>400,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Bad Request",API_RESPONSE=>""));
          exit();
       }
@@ -169,15 +172,19 @@ Flight::before('start', function(&$params, &$output)
                   echo Flight::json(array(API_RESPONSE_STATUS_CODE=>401,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Unauthorized",API_RESPONSE=>""));
                   exit();
                }
+               
           }
           
       }
       catch(Exception $e)
       {
            error_log(print_r($deviceDetails,true));
+
+
         echo Flight::json(array(API_RESPONSE_STATUS_CODE=>400,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Bad Request",API_RESPONSE=>""));
             
       }
+
 });
 
 

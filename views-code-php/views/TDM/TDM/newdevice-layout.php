@@ -276,25 +276,7 @@ $(document).ready(function(){
             }
           });
 
-/*          document.getElementById("device-id").value="";
-          document.getElementById("device-tag").value="";
-          document.getElementById("make").value="";
-          document.getElementById("model").value="";
-          document.getElementById("os").value="";
-          document.getElementById("version").value="";
-          document.getElementById("imei").value="";
-          document.getElementById("comment").value="";
-          document.getElementById("device_type").value=-1;
 
-          $("#success-alert").fadeTo(2000, 50).slideUp(500, function(){
-          $("#success-alert").addClass("in");
-
-          });
-
-          $("#success-alert").fadeTo(1000, 500).slideUp(500, function(){
-          $("#success-alert").addClass("in");
-           });
-*/
 
 
      }
