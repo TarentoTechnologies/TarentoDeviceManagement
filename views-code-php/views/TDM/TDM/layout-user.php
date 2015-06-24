@@ -156,22 +156,19 @@
                     </aside>
 
                     <aside class="right-side">
-
+                <section class="content">
              <?php echo $content; ?>
 
-          </div><!--end col-6 -->
-          
 
-                    </div>
                     
                 </section><!-- /.content -->
-                <div class="footer-main">
-                    Copyright &copy Tarento, 2015
-                </div>
+                
             </aside><!-- /.right-side -->
 
         </div><!-- ./wrapper -->
-
+        <div class="footer footer-main">
+                    Copyright &copy Tarento, 2015
+                </div>
 
         <!-- jQuery 2.0.2 -->
          
