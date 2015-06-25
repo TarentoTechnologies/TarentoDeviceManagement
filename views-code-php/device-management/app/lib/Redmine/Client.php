@@ -309,7 +309,7 @@ class Client
 
         if ($response) {
             if ('<' === substr($response, 0, 1)) {
-                return new \SimpleXMLElement($response);
+//                return new \SimpleXMLElement($response);
             }
 
             return $response;
