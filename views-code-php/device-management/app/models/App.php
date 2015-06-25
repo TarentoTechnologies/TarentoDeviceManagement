@@ -18,10 +18,11 @@ class App extends DB
               $sql = "CALL device_transfer(?,?,?,?,?,?)";
               $response=parent::query($sql,$deviceTransferInfo);
               error_log(print_r($response,true));
+              error_log(print_r(array($deviceTransferInfo),true));
               $responseStatus=array();
               while($result=$response->fetchObject())
                  {
-                    error_log(print_r(array("test","test1"),true));
+                    error_log(print_r(array($result),true));
                  	if(isset($result->{2}))
                  	{
                       $responseStatus=array(API_RESPONSE_STATUS_CODE=>200,API_RESPONSE_STATUS_MESSAGE=>"Successfully assigned",API_RESPONSE=>array());

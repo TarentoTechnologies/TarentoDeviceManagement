@@ -3,10 +3,9 @@
 namespace Redmine\Api;
 
 /**
- * Listing issue categories, creating, editing.
+ * Listing issue categories, creating, editing
  *
  * @link   http://www.redmine.org/projects/redmine/wiki/Rest_IssueCategories
- *
  * @author Kevin Saliou <kevin at saliou dot name>
  */
 class IssueCategory extends AbstractApi
@@ -14,29 +13,25 @@ class IssueCategory extends AbstractApi
     private $issueCategories = array();
 
     /**
-     * List issue categories.
-     *
+     * List issue categories
      * @link http://www.redmine.org/projects/redmine/wiki/Rest_IssueCategories#GET
      *
-     * @param string|int $project project id or literal identifier
-     * @param array      $params  optional parameters to be passed to the api (offset, limit, ...)
-     *
-     * @return array list of issue categories found
+     * @param  string|int $project project id or literal identifier
+     * @return array      list of issue categories found
      */
-    public function all($project, array $params = array())
+    public function all($project)
     {
-        $this->issueCategories = $this->retrieveAll('/projects/'.$project.'/issue_categories.json', $params);
+        $this->issueCategories = $this->get('/projects/'.$project.'/issue_categories.json');
 
         return $this->issueCategories;
     }
 
     /**
-     * Returns an array of categories with name/id pairs.
+     * Returns an array of categories with name/id pairs
      *
-     * @param string|int $project     project id or literal identifier
-     * @param bool       $forceUpdate to force the update of the projects var
-     *
-     * @return array list of projects (id => project name)
+     * @param  string|int $project     project id or literal identifier
+     * @param  boolean    $forceUpdate to force the update of the projects var
+     * @return array      list of projects (id => project name)
      */
     public function listing($project, $forceUpdate = false)
     {
@@ -52,12 +47,11 @@ class IssueCategory extends AbstractApi
     }
 
     /**
-     * Get a category id given its name and related project.
+     * Get a category id given its name and related project
      *
-     * @param string|int $project project id or literal identifier
-     * @param string     $name
-     *
-     * @return int|false
+     * @param  string|int $project project id or literal identifier
+     * @param  string     $name
+     * @return int
      */
     public function getIdByName($project, $name)
     {
@@ -70,13 +64,11 @@ class IssueCategory extends AbstractApi
     }
 
     /**
-     * Get extended information about an issue category.
-     *
+     * Get extended information about an issue category
      * @link http://www.redmine.org/projects/redmine/wiki/Rest_IssueCategories#GET-2
      *
-     * @param string $id the issue category id
-     *
-     * @return array information about the category
+     * @param  string $id the issue category id
+     * @return array  information about the category
      */
     public function show($id)
     {
@@ -84,30 +76,27 @@ class IssueCategory extends AbstractApi
     }
 
     /**
-     * Create a new issue category of $project given an array of $params.
-     *
+     * Create a new issue category of $project given an array of $params
      * @link http://www.redmine.org/projects/redmine/wiki/Rest_IssueCategories#POST
      *
-     * @param string|int $project project id or literal identifier
-     * @param array      $params  the new issue category data
-     *
-     * @return SimpleXMLElement
+     * @param  string|int        $project project id or literal identifier
+     * @param  array             $params  the new issue category data
+     * @return \SimpleXMLElement
      */
     public function create($project, array $params = array())
     {
         $defaults = array(
-            'name' => null,
+            'name'           => null,
             'assigned_to_id' => null,
         );
-        $params = $this->sanitizeParams($defaults, $params);
-
-        if (
+        $params = array_filter(array_merge($defaults, $params));
+        if(
             !isset($params['name'])
         ) {
             throw new \Exception('Missing mandatory parameters');
         }
 
-        $xml = new SimpleXMLElement('<?xml version="1.0"?><issue_category></issue_category>');
+        $xml = new \SimpleXMLElement('<?xml version="1.0"?><issue_category></issue_category>');
         foreach ($params as $k => $v) {
             $xml->addChild($k, $v);
         }
@@ -116,24 +105,22 @@ class IssueCategory extends AbstractApi
     }
 
     /**
-     * Update issue category's information.
-     *
+     * Update issue category's information
      * @link http://www.redmine.org/projects/redmine/wiki/Rest_IssueCategories#PUT
      *
-     * @param string $id     the issue category id
-     * @param array  $params
-     *
-     * @return SimpleXMLElement
+     * @param  string            $id     the issue category id
+     * @param  array             $params
+     * @return \SimpleXMLElement
      */
     public function update($id, array $params)
     {
         $defaults = array(
-            'name' => null,
+            'name'           => null,
             'assigned_to_id' => null,
         );
-        $params = $this->sanitizeParams($defaults, $params);
+        $params = array_filter(array_merge($defaults, $params));
 
-        $xml = new SimpleXMLElement('<?xml version="1.0"?><issue_category></issue_category>');
+        $xml = new \SimpleXMLElement('<?xml version="1.0"?><issue_category></issue_category>');
         foreach ($params as $k => $v) {
             $xml->addChild($k, $v);
         }
@@ -142,19 +129,17 @@ class IssueCategory extends AbstractApi
     }
 
     /**
-     * Delete an issue category.
-     *
+     * Delete an issue category
      * @link http://www.redmine.org/projects/redmine/wiki/Rest_IssueCategories#DELETE
      * available $params :
      * - reassign_to_id : when there are issues assigned to the category you are deleting, this parameter lets you reassign these issues to the category with this id
      *
-     * @param int   $id     id of the category
-     * @param array $params extra GET parameters
-     *
+     * @param  int    $id     id of the category
+     * @param  array  $params extra GET parameters
      * @return string
      */
     public function remove($id, array $params = array())
     {
-        return $this->delete('/issue_categories/'.$id.'.xml?'.http_build_query($params));
+        return $this->delete('/issue_categories/'.$id.'.xml?'.$this->http_build_str($params));
     }
 }

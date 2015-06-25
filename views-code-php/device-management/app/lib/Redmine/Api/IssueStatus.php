@@ -3,10 +3,9 @@
 namespace Redmine\Api;
 
 /**
- * Listing issue statuses.
+ * Listing issue statuses
  *
  * @link   http://www.redmine.org/projects/redmine/wiki/Rest_IssueStatuses
- *
  * @author Kevin Saliou <kevin at saliou dot name>
  */
 class IssueStatus extends AbstractApi
@@ -14,31 +13,27 @@ class IssueStatus extends AbstractApi
     private $issueStatuses = array();
 
     /**
-     * List issue statuses.
-     *
+     * List issue statuses
      * @link http://www.redmine.org/projects/redmine/wiki/Rest_IssueStatuses#GET
-     *
-     * @param array $params optional parameters to be passed to the api (offset, limit, ...)
      *
      * @return array list of issue statuses found
      */
-    public function all(array $params = array())
+    public function all()
     {
-        $this->issueStatuses = $this->retrieveAll('/issue_statuses.json', $params);
+        $this->issueStatuses = $this->get('/issue_statuses.json');
 
         return $this->issueStatuses;
     }
 
     /**
-     * Returns an array of issue statuses with name/id pairs.
+     * Returns an array of issue statuses with name/id pairs
      *
-     * @param bool $forceUpdate to force the update of the statuses var
-     *
-     * @return array list of issue statuses (id => name)
+     * @param  boolean $forceUpdate to force the update of the statuses var
+     * @return array   list of issue statuses (id => name)
      */
     public function listing($forceUpdate = false)
     {
-        if (empty($this->issueStatuses) || $forceUpdate) {
+        if (empty($this->issueStatuses)) {
             $this->all();
         }
         $ret = array();
@@ -50,11 +45,9 @@ class IssueStatus extends AbstractApi
     }
 
     /**
-     * Get a status id given its name.
-     *
-     * @param string $name
-     *
-     * @return int|false
+     * Get a status id given its name
+     * @param  string $name
+     * @return int
      */
     public function getIdByName($name)
     {

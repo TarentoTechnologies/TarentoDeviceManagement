@@ -3,10 +3,9 @@
 namespace Redmine\Api;
 
 /**
- * Listing trackers.
+ * Listing trackers
  *
  * @link   http://www.redmine.org/projects/redmine/wiki/Rest_Trackers
- *
  * @author Kevin Saliou <kevin at saliou dot name>
  */
 class Tracker extends AbstractApi
@@ -14,31 +13,27 @@ class Tracker extends AbstractApi
     private $trackers = array();
 
     /**
-     * List trackers.
-     *
+     * List trackers
      * @link http://www.redmine.org/projects/redmine/wiki/Rest_Trackers#GET
-     *
-     * @param array $params optional parameters to be passed to the api (offset, limit, ...)
      *
      * @return array list of trackers found
      */
-    public function all(array $params = array())
+    public function all()
     {
-        $this->trackers = $this->retrieveAll('/trackers.json', $params);
+        $this->trackers = $this->get('/trackers.json');
 
         return $this->trackers;
     }
 
     /**
-     * Returns an array of trackers with name/id pairs.
+     * Returns an array of trackers with name/id pairs
      *
-     * @param bool $forceUpdate to force the update of the trackers var
-     *
-     * @return array list of trackers (id => name)
+     * @param  boolean $forceUpdate to force the update of the trackers var
+     * @return array   list of trackers (id => name)
      */
     public function listing($forceUpdate = false)
     {
-        if (empty($this->trackers) || $forceUpdate) {
+        if (empty($this->trackers)) {
             $this->all();
         }
         $ret = array();
@@ -47,22 +42,5 @@ class Tracker extends AbstractApi
         }
 
         return $ret;
-    }
-
-    /**
-     * Get a tracket id given its name.
-     *
-     * @param string|int $name tracker name
-     *
-     * @return int|false
-     */
-    public function getIdByName($name)
-    {
-        $arr = $this->listing();
-        if (!isset($arr[$name])) {
-            return false;
-        }
-
-        return $arr[(string) $name];
     }
 }
