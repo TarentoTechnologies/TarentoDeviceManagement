@@ -13,11 +13,6 @@ Flight::route('/role', function()
 
 
 
-Flight::route('/get-device-info', function()
-{
-    Flight::redirect('/device-management/');
-});
-
 
 
 Flight::route('POST /login-check', function()
