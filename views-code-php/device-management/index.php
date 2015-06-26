@@ -74,6 +74,14 @@ Flight::route(GET_DEVICE_INFORMATION_WITH_TRACK, function() use (&$app)
 
 });
 
+//add-user
+Flight::route(ADD_USER, function() use (&$app)
+{
+   $adminObj=$app->resolve("user");
+   $adminObj->addUser();
+
+});
+
 
 //check-user-role
 Flight::route(CHECK_USER_ROLE, function() use (&$app)

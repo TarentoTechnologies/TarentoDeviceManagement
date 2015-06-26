@@ -17,10 +17,11 @@ class Admin extends DB
         {
             $exist=0;
 
-         $sql="select distinct di.id, di.device_id, di.type from deviceinfo di where di.device_id=? and di.type=?";
+         //$sql="select distinct di.id, di.device_id, di.type from deviceinfo di where di.device_id=? and di.type=?";
+            $sql="select distinct di.id, di.device_id, di.type from deviceinfo di where di.device_id=?";
          $checkExists=array();
          $checkExists[0]=$deviceDetails[0];
-         $checkExists[1]=$deviceDetails[3];
+         //$checkExists[1]=$deviceDetails[3];
 
          error_log(print_r($checkExists,true));
          
@@ -123,7 +124,7 @@ class Admin extends DB
              {
                  error_log(print_r($deviceInformationArray,true));
                  error_log(print_r("inside admin",true));
-                 $sql="select di.*,u.id as user_id,u.first_name,u.last_name,u.unique_id as employee_id from deviceinfo di left join device_holder_info dhi on di.id=dhi.device_id left join users u on u.id=dhi.user_id where di.device_id=? and di.type=?";
+                 $sql="select di.*,u.id as user_id,u.first_name,u.last_name,u.unique_id as employee_id from deviceinfo di left join device_holder_info dhi on di.id=dhi.device_id left join users u on u.id=dhi.user_id where di.device_id=?";
                  $response=parent::query($sql,$deviceInformationArray);
                  $deviceInformation=array();
                  $availabilityFlag=0;
@@ -158,7 +159,7 @@ class Admin extends DB
     {
          $device_types_array=array();   
          $device_types_array=Admin::typeList();
-
+         //error_log(print_r($userInfo[0],true));
              try
              {
                 $deviceInformation=array();
@@ -411,7 +412,7 @@ public function typeList()
 
 
 /**
-     * getDeviceInfoFromIMEI
+     * editDeviceInfoFromIMEI
      *
      * it will get the device informtion with device holder
      *
@@ -455,7 +456,8 @@ public function typeList()
              {
                  $deviceInformation=array();
 
-                 $sql="select distinct di.id, di.device_id,di.make,di.name,di.type,di.type_id,di.os,di.version,di.IMEI,di.accessoryinfo, di.created_at,di.updated_at from deviceinfo di where di.device_id=? and di.type=? group by di.id order by di.created_at desc";
+//                 $sql="select distinct di.id, di.device_id,di.make,di.name,di.type,di.type_id,di.os,di.version,di.IMEI,di.accessoryinfo, di.created_at,di.updated_at from deviceinfo di where di.device_id=? and di.type=? group by di.id order by di.created_at desc";
+                 $sql="select distinct di.id, di.device_id,di.make,di.name,di.type,di.type_id,di.os,di.version,di.IMEI,di.accessoryinfo, di.created_at,di.updated_at from deviceinfo di where di.device_id=? group by di.id order by di.created_at desc";
                  $response=parent::query($sql,$deviceInformationArray);
                  $deviceInfo=array();
                  $availabilityFlag=0;
@@ -474,7 +476,8 @@ public function typeList()
 
 
 
-                 $sql="select distinct dt.id, di.id, di.device_id,di.make,di.name,di.type,di.os,di.version,di.IMEI,di.accessoryinfo, di.created_at,di.updated_at,u.id as user_id,u.first_name,u.last_name,u.unique_id as employee_id,dhi.comments as holder_comments,dt.current_location, dt.ip, dt.wifi,dt.created_at as track_create, dt.pin_verification_status as status from device_tracker dt, deviceinfo di,device_holder_info dhi,users u where di.id=dhi.device_id and u.id=dhi.user_id and dt.device_id=di.id and di.device_id=? and di.type=? group by dt.id order by dt.created_at desc";
+                 //$sql="select distinct dt.id, di.id, di.device_id,di.make,di.name,di.type,di.os,di.version,di.IMEI,di.accessoryinfo, di.created_at,di.updated_at,u.id as user_id,u.first_name,u.last_name,u.unique_id as employee_id,dhi.comments as holder_comments,dt.current_location, dt.ip, dt.wifi,dt.created_at as track_create, dt.pin_verification_status as status from device_tracker dt, deviceinfo di,device_holder_info dhi,users u where di.id=dhi.device_id and u.id=dhi.user_id and dt.device_id=di.id and di.device_id=? and di.type=? group by dt.id order by dt.created_at desc";
+                 $sql="select distinct dt.id, di.id, di.device_id,di.make,di.name,di.type,di.os,di.version,di.IMEI,di.accessoryinfo, di.created_at,di.updated_at,u.id as user_id,u.first_name,u.last_name,u.unique_id as employee_id,dhi.comments as holder_comments,dt.current_location, dt.ip, dt.wifi,dt.created_at as track_create, dt.pin_verification_status as status from device_tracker dt, deviceinfo di,device_holder_info dhi,users u where di.id=dhi.device_id and u.id=dhi.user_id and dt.device_id=di.id and di.device_id=? group by dt.id order by dt.created_at desc";
                  $response=parent::query($sql,$deviceInformationArray);
                  
 
@@ -492,8 +495,8 @@ public function typeList()
                  
 
 
-
-                $sql="select dc.comment as comments,dc.created_on from device_comment dc, deviceinfo di where di.device_id=dc.device_id and dc.device_id=? and dc.type=? group by dc.created_on order by dc.created_on desc";
+//                $sql="select dc.comment as comments,dc.created_on from device_comment dc, deviceinfo di where di.device_id=dc.device_id and dc.device_id=? and dc.type=? group by dc.created_on order by dc.created_on desc";
+                 $sql="select dc.comment as comments,dc.created_on from device_comment dc, deviceinfo di where di.device_id=dc.device_id and dc.device_id=? group by dc.created_on order by dc.created_on desc";
                  $deviceComment=array();
                  $response=parent::query($sql,$deviceInformationArray);                 
                  while($result=$response->fetchObject())

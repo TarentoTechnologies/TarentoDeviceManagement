@@ -16,6 +16,7 @@ class tdm_class{
      $this->dbInstance=$dbInstance;
   }
 
+/* To check the user role */
   function tdmdash($id)
   {
 
@@ -29,24 +30,46 @@ class tdm_class{
       }    
     return $role;
 
-/*
-
-    $host='localhost';
-    $username='root';
-    $password='mysql123';
-    $dbname="tdm_db";   
-
-
-    $con=mysqli_connect($host,$username,$password,$dbname);
-    if (mysqli_connect_errno())
-      {
-      echo "Failed to connect to MySQL: " . mysqli_connect_error();
-      }
-    $query="SELECT * FROM admin where admin_id='".$id."'";
-    $res=mysqli_query($con,$query);
-    print_r($res);*/
-    //return $res;
   }
+
+
+
+
+/* To add new user if not existing */
+
+  function addNewUser($userInfo)
+    {
+   
+         
+          //$sql="select unique_id from users where unique_id=?";   
+          $result=$this->dbInstance->query("SELECT * FROM `users` where `unique_id`=?",array($userInfo[2]));               
+          //$response=parent::query($sql,array($userInfo[2]));]
+          $responseStatus=0;
+          while($record=$result->fetchObject()) 
+            {          
+              $responseStatus=1;        
+            }              
+          
+          
+           if ($responseStatus==1) { }
+            else
+            {
+              //$sql="INSERT INTO users ( first_name , last_name , unique_id , pin , created_at , updated_at )VALUES (?, ?, ?, ?, NOW() , NOW())";
+              
+              $result1=$this->dbInstance->query("INSERT INTO `users` ( `first_name` , `last_name` , `unique_id` , `pin`, `created_at`, `updated_at`  )VALUES (?, ?, ?, ?,?,?)",$userInfo);
+              while($record1=$result1->fetchObject()) 
+                {          
+                  $responseStatus=2;        
+                }               
+              
+            }
+
+        
+          return ($responseStatus);
+        
+
+      
+    }
 
 
 

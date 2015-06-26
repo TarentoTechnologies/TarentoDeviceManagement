@@ -262,7 +262,7 @@ $(document).ready(function(){
                      });
 
                     $("#device-id").css("border-color","red");
-                    $("#model").css("border-color","red");
+                    /*$("#model").css("border-color","red");*/
 
                 }
                 

@@ -2,6 +2,7 @@
 //api uri constants
 define("DEVICE_TRACKER","/device-tracker");
 define("RESET_USER_PIN","/reset-user-pin");
+define("ADD_USER","/add-user");
 define("DEVICE_TRANSFER","/device-transfer");
 define("ADD_DEVICE_INFORMATION","/add-device-info");
 define("LIST_DEVICE_DETAILS","/list-device-details");

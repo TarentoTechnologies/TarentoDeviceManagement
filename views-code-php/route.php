@@ -47,7 +47,7 @@ Flight::route('POST /login-check', function()
         if(!empty($post)) {
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-            print_r($post);
+            //print_r($post);
         } 
 
         $result = curl_exec($ch);
@@ -60,19 +60,64 @@ Flight::route('POST /login-check', function()
 
                 $dbobj=new DB();                
                 $tdm_obj=new tdm_class($dbobj);
-                $role=$tdm_obj->tdmdash($value["employee_id"]);                
+                $role=$tdm_obj->tdmdash($value["employee_id"]);    
+
+/* To add new user if not existing */
+                $userDetails=array();
+                $userDetails[0]=$array["firstname"];
+                $userDetails[1]=$array["lastname"];
+                $userDetails[2]=$value["employee_id"];
+                $userDetails[3]="111";
+                print_r(date('Y-m-d h:i:s a', time()));
+                $userDetails[4] = date('Y-m-d h:i:s a', time());
+                $userDetails[5] = date('Y-m-d h:i:s a', time());
+                //print_r($userDetails);
+
+                $userentry=$tdm_obj->addNewUser($userDetails);
+
+
+
 
                 Session::put('user', $value["employee_id"]);
                 Session::put('pass', $pass);
                 Session::put('name', $array["firstname"]." ".$array["lastname"]);
                 Session::put('role', $role);
-                print_r($_SESSION);
+                //print_r($_SESSION);
+
+
+                    if ($userentry==1) { }
+                    else
+                    {
+                          Flight::redirect('resetpin');   
+                    }
 
             }   
         }
 
 
-        
+
+
+
+
+
+
+/*
+$test["post_data"]=json_encode(array("appId"=>1,"apiToken"=>"111111","first_name"=>"111111","last_name"=>"111111","employee_id"=>"102031","pin"=>"111111"));
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL,"http://localhost:9191/add-user");
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS,$test["post_data"]);
+
+$resultUser=curl_exec ($ch);
+$resUser=json_decode($resultUser,TRUE);
+print_r($resUser);
+curl_close ($ch); 
+
+
+
+
+*/        
      
     }
     else

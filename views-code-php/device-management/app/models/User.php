@@ -141,5 +141,55 @@ class User extends DB
       {
             return array(API_RESPONSE_STATUS_CODE=>500,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Failure");
       }
-    }    
+    }   
+
+    /**
+     * checkUserRole
+     *
+     * 
+     *
+     * @param (array) ($userInfo) $userInfo 
+     * @return (type) (name)
+     */
+    public function addNewUser($userInfo)
+    {
+      try
+      {
+          error_log("---------------------------");
+          error_log(print_r($userInfo[2],true));      
+          error_log("---------------------------");        
+          $sql="select unique_id from users where unique_id=?";              
+          //$sql = "CALL device_track(?,?,?,?,?,?)";
+          //error_log(print_r($userInfo));
+          
+          $response=parent::query($sql,array($userInfo[2]));
+          
+          error_log("======================");
+          error_log(print_r($response));
+          error_log("======================");
+          $responseStatus=0;
+          while($result=$response->fetchObject())
+           {
+              /*isset($result->{1}) ? $responseStatus=$result->{1} : $responseStatus=$result->{0};*/
+              $responseStatus=1;
+           }
+
+           if ($responseStatus==1) { }
+            else
+            {
+              $sql="INSERT INTO users ( first_name , last_name , unique_id , pin , created_at , updated_at )VALUES (?, ?, ?, ?, NOW() , NOW())";
+              $response=parent::query($sql,$userInfo);
+            }
+
+        
+          return ($responseStatus==1) ?  array(API_RESPONSE_STATUS_CODE=>200,API_RESPONSE_STATUS_MESSAGE=>"User already registered") : array(API_RESPONSE_STATUS_CODE=>404,API_RESPONSE_STATUS_ERROR_MESSAGE=>"New user added");
+        
+
+      }
+      catch(Exception $e)
+      {
+            return array(API_RESPONSE_STATUS_CODE=>500,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Failure");
+      }
+    }
+     
 }

@@ -343,9 +343,9 @@ document.getElementById("tbl_track").innerHTML="";
 
           "apiToken":"111111",
 
-          "device_id":""+device_id+"",
+          "device_id":""+device_id+""/*,
 
-          "type":""+device_type+""
+          "type":""+device_type+""*/
 
           };
         

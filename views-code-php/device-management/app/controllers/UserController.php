@@ -140,4 +140,39 @@
             echo Flight::json(array(API_RESPONSE_STATUS_CODE=>400,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Bad Request",API_RESPONSE=>$is_valid));
            }
      }
+
+     /**
+      * userRole
+      *
+      * Find the user role
+      *
+      * @param (type) (name) about this param
+      * @return (type) (name)
+      */
+     public function addUser()
+     {
+          $userInformationArray=array();
+          $userDetails=json_decode(Flight::request()->getBody(),true);
+          //$response=$this->admin->getDeviceInfoFromIMEI();
+          $is_valid = GUMP::is_valid($userDetails, array(
+              'first_name' => 'required',
+              'last_name' => 'required',
+              'employee_id' => 'required',
+              'pin' => 'required'             
+          ));
+          if($is_valid === true) 
+          {
+           $userInformationArray[]=$userDetails["first_name"];
+           $userInformationArray[]=$userDetails["last_name"];
+           $userInformationArray[]=$userDetails["employee_id"];           
+           $userInformationArray[]=$userDetails["pin"];
+           error_log(print_r($userInformationArray));
+           $response=$this->user->addNewUser($userInformationArray);
+            Flight::json($response);
+           }
+           else 
+           {
+            echo Flight::json(array(API_RESPONSE_STATUS_CODE=>400,API_RESPONSE_STATUS_ERROR_MESSAGE=>"Bad Request",API_RESPONSE=>$is_valid));
+           }
+     }
 }
