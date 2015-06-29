@@ -4,11 +4,6 @@
         "wixel/gump": "dev-master"
     },
 
-    
-  "require": {
-        "kbsali/redmine-api":"~1.0",
-        "kanbam/redmine-api": "~1.0"
-    },
 
     "autoload": {
        

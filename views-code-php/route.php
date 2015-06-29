@@ -21,8 +21,7 @@ Flight::route('POST /login-check', function()
     $user=$_POST['txtUserName'];
     $pass=$_POST['txtPassword'];
 
-    $client = new Redmine\Client('http://greenpine.idc.tarento.com',$user,$pass);
-    $client->api('user')->getCurrentUser();
+
     $url=$user.":".$pass."@greenpine.idc.tarento.com/users/current.xml?include=memberships,groups";
 
     $url="https://".$url;
@@ -67,8 +66,7 @@ Flight::route('POST /login-check', function()
                 $userDetails[0]=$array["firstname"];
                 $userDetails[1]=$array["lastname"];
                 $userDetails[2]=$value["employee_id"];
-                $userDetails[3]="111";
-                print_r(date('Y-m-d h:i:s a', time()));
+                $userDetails[3]="111";                
                 $userDetails[4] = date('Y-m-d h:i:s a', time());
                 $userDetails[5] = date('Y-m-d h:i:s a', time());
                 //print_r($userDetails);
