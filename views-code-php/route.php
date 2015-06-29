@@ -220,6 +220,21 @@ Flight::route('/resetpin', function()
 
 });
 
+Flight::route('/resetpin-admin', function()
+{
+ if (isset($_SESSION['user']))
+ {
+
+    Flight::render('TDM/TDM/resetpin-layout', array('user_id'=>$_SESSION["user"],'user'=>$_SESSION["name"]),'content');
+    Flight::render('TDM/TDM/layout');
+ }
+ else
+ {
+    Flight::redirect('/');
+ } 
+
+});
+
 Flight::route('/newdevice', function(){
     
 if (isset($_SESSION['user']))

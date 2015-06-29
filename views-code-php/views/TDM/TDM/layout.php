@@ -140,11 +140,11 @@
                                         <i class="fa fa-globe"></i> <span>New Device </span>
                                     </a>
                                 </li>
-                               <!-- <li>
-                                    <a href="resetpin">
+                                <li>
+                                    <a href="resetpin-admin">
                                         <i class="glyphicon glyphicon-lock"></i> <span>Reset PIN </span>
                                     </a>
-                                </li> -->
+                                </li>
                                 <li>
                                     <a href="changepwd" target="_blank">
                                         <i class="glyphicon glyphicon-lock"></i> <span>Change Password </span>
