@@ -46,19 +46,19 @@
                                   <form class="form-horizontal tasi-form" method="POST" id="deviceFormEdit" name="deviceFormEdit">
                                     
                                       <div class="form-group">
-                                          <label class="col-sm-2 col-sm-2 control-label">Make</label>
+                                          <label class="col-sm-1 control-label" >Make</label>
                                           <div class="col-sm-10">
                                               <input type="text" class="form-control" id="makeEdit" name="makeEdit">
                                           </div>
                                       </div>
                                       <div class="form-group">
-                                          <label class="col-sm-2 col-sm-2 control-label">Model</label>
+                                          <label class="col-sm-1 control-label">Model</label>
                                           <div class="col-sm-10">
                                               <input type="select" class="form-control" id="modelEdit" name="modelEdit">                                              
                                           </div>
                                       </div>
                                       <div class="form-group">
-                                          <label class="col-sm-2 col-sm-2 control-label">Type</label>
+                                          <label class="col-sm-1 control-label">Type</label>
                                           <div class="col-sm-10">
                                               <select class="form-control" id="device_typeEdit" name="device_typeEdit" >
                                                
@@ -66,19 +66,19 @@
                                           </div>
                                       </div>
                                       <div class="form-group">
-                                          <label class="col-sm-2 col-sm-2 control-label">OS</label>
+                                          <label class="col-sm-1 control-label">OS</label>
                                           <div class="col-sm-10">
                                               <input type="text" class="form-control" id="osEdit" name="osEdit">
                                           </div>
                                       </div>
                                       <div class="form-group">
-                                          <label class="col-sm-2 col-sm-2 control-label">Version</label>
+                                          <label class="col-sm-1 control-label">Version</label>
                                           <div class="col-sm-10">
                                               <input type="text" class="form-control" id="versionEdit" name="versionEdit">
                                           </div>
                                       </div>
                                       <div class="form-group">
-                                          <label class="col-sm-2 col-sm-2 control-label">IMEI</label>
+                                          <label class="col-sm-1 control-label">IMEI</label>
                                           <div class="col-sm-10">
                                               <input type="text" class="form-control" id="imeiEdit" name="imeiEdit">
                                           </div>
@@ -86,7 +86,7 @@
                                      
                                       <div class="form-group">
                                          
-                                          <div class="col-sm-10 col-md-offset-2">
+                                          <div class="col-sm-10 col-md-offset-1">
                                                <button type="button" class="btn btn-info" onclick="deviceEditFun()">Update</button>
                                           </div>
                                       </div>

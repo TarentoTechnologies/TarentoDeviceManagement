@@ -49,7 +49,7 @@ class AppController {
 			$deviceTransferInformationArray [] = $deviceDetails [DEVICE_TYPE];
 
 			$deviceInformationArray[]=$deviceDetails[DEVICE_ID];
-           $deviceInformationArray[]=$deviceDetails[DEVICE_TYPE];
+           /*$deviceInformationArray[]=$deviceDetails[DEVICE_TYPE];*/
 	
 	
 			
