@@ -179,7 +179,7 @@
 
                                              </p>
                                             <div style="position:fixed;margin-left: 10%;z-index:2000;" id="loader-div" name="loader-div">
-                                                <img src="/public/img/ajax-loader1.gif"/>
+                                                <img src="./public/img/ajax-loader1.gif"/>
                                              </div>
                                              
                                               

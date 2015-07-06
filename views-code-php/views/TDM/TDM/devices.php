@@ -7,15 +7,15 @@
         <meta name="description" content="Tarento Device Management">
         <meta name="keywords" content="Admin, Bootstrap 3, Template, Theme, Responsive">
         <!-- bootstrap 3.0.2 -->
-        <link href="/public/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="./public/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <!-- font Awesome -->
-        <link href="/public/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="./public/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <!-- Ionicons -->
-        <link href="/public/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <link href="./public/css/ionicons.min.css" rel="stylesheet" type="text/css" />
         <!-- google font -->
         <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <!-- Theme style -->
-        <link href="/public/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="./public/css/style.css" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -189,12 +189,12 @@
 
         <!-- jQuery 2.0.2 -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-        <script src="/public/js/jquery.min.js" type="text/javascript"></script>
+        <script src="./public/js/jquery.min.js" type="text/javascript"></script>
 
         <!-- Bootstrap -->
-        <script src="/public/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="./public/js/bootstrap.min.js" type="text/javascript"></script>
         <!-- Director App -->
-        <script src="/public/js/Director/app.js" type="text/javascript"></script>
+        <script src="./public/js/Director/app.js" type="text/javascript"></script>
 
 
         <script type="text/javascript">

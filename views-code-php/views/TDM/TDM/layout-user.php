@@ -7,16 +7,16 @@
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <meta name="description" content="Tarento Device Management">
     <!-- bootstrap 3.0.2 -->
-    <link href="/public/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="./public/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- font Awesome -->
-    <link href="/public/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="./public/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
-    <link href="/public/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <link href="./public/css/ionicons.min.css" rel="stylesheet" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <!-- Theme style -->
-    <link href="/public/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="./public/css/style.css" rel="stylesheet" type="text/css" />
 
-    <link href="/public/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
+    <link href="./public/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
 
 
 
@@ -91,7 +91,7 @@
                                         <li class="divider"></li>
  -->
                                         <li>
-                                            <a href="/"><i class="fa fa-ban fa-fw pull-right"></i> Logout</a>
+                                            <a href="/devices"><i class="fa fa-ban fa-fw pull-right"></i> Logout</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -173,22 +173,22 @@
         <!-- jQuery 2.0.2 -->
          
     <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
-    <script src="/public/js/jquery.min.js"></script>
+    <script src="./public/js/jquery.min.js"></script>
 
-   <script src="/public/js/ChartNew.js"></script>
-   <script src="/public/js/d3.v3.min.js"></script>   
-   <script src="/public/js/d3.tip.v0.6.3.js"></script>
+   <script src="./public/js/ChartNew.js"></script>
+   <script src="./public/js/d3.v3.min.js"></script>   
+   <script src="./public/js/d3.tip.v0.6.3.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-        <script src="/public/js/jquery.min.js" type="text/javascript"></script>
+        <script src="./public/js/jquery.min.js" type="text/javascript"></script>
 
         <!-- jQuery UI 1.10.3 -->
-        <script src="/public/js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
+        <script src="./public/js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
         <!-- Bootstrap -->
-        <script src="/public/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="./public/js/bootstrap.min.js" type="text/javascript"></script>
         <!-- daterangepicker -->
-        <script src="/public/js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+        <script src="./public/js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
              <!-- Director App -->
-        <script src="/public/js/Director/app.js" type="text/javascript"></script>
+        <script src="./public/js/Director/app.js" type="text/javascript"></script>
 
     
 

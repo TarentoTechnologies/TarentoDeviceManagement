@@ -12,6 +12,11 @@ Flight::route('/role', function()
 });
 
 
+Flight::route('/devices', function()
+{
+    Flight::redirect('/');
+});
+
 
 
 

@@ -7,8 +7,8 @@
 <head>
 <title>Tarento Device Management System</title>
  
- <script src="/public/js/jquery.min.js" type="text/javascript"></script>
-     <link href="/public/css/login-style.css" rel="stylesheet" type="text/css" />
+ <script src="./public/js/jquery.min.js" type="text/javascript"></script>
+     <link href="./public/css/login-style.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:100">
 @font-face {
   font-family: 'Roboto';
